@@ -1,0 +1,17 @@
+{
+  "$description": "Seed tokens. Replace or expand with your exports from Figma MCP, Tokens Studio, or hand-authored DTCG files. Style Dictionary v5 reads $value / $type (DTCG) natively.",
+  "color": {
+    "brand": {
+      "primary": { "$value": "#4f46e5", "$type": "color" }
+    },
+    "neutral": {
+      "100": { "$value": "#ffffff", "$type": "color" },
+      "900": { "$value": "#111827", "$type": "color" }
+    }
+  },
+  "space": {
+    "sm": { "$value": "8px", "$type": "dimension" },
+    "md": { "$value": "16px", "$type": "dimension" },
+    "lg": { "$value": "24px", "$type": "dimension" }
+  }
+}
