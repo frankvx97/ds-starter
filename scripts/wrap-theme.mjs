@@ -55,14 +55,12 @@ function build() {
   writeFileSync(join(outDir, 'theme-light.css'), wrapLight(light));
   writeFileSync(join(outDir, 'theme-dark.css'), wrapDark(dark));
 
-  // eslint-disable-next-line no-console
   console.log(`[theme:wrap] wrote ${outDir}/theme-{light,dark}.css`);
 }
 
 build();
 
 if (process.argv.includes('--watch')) {
-  // eslint-disable-next-line no-console
   console.log(`[theme:wrap] watching ${inDir}`);
   let timer;
   watch(inDir, { persistent: true }, (_event, filename) => {

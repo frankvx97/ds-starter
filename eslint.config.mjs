@@ -33,5 +33,15 @@ export default tseslint.config(
       ...reactHooks.configs.recommended.rules,
     },
   },
+  {
+    files: ['**/*.mjs', '**/*.cjs', '**/*.js'],
+    languageOptions: {
+      ecmaVersion: 2022,
+      sourceType: 'module',
+      globals: {
+        ...globals.node,
+      },
+    },
+  },
   ...storybook.configs['flat/recommended'],
 );

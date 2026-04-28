@@ -195,7 +195,7 @@ function formatBlur(value) {
 }
 
 // CSS-side value for a leaf. References stay as `var(--…)` chains.
-function formatValueCss(leaf, root) {
+function formatValueCss(leaf) {
   const { value, type } = leaf;
 
   if (typeof value === 'string') {
@@ -332,7 +332,7 @@ function writeTokensCss(buckets) {
       if (sg.sub) lines.push(`  /* ${bucket.key}.${sg.sub} */`);
       for (const leaf of sg.leaves) {
         const name = pathToCssName(leaf.path);
-        const val = formatValueCss(leaf, bucket._root);
+        const val = formatValueCss(leaf);
         const desc = leaf.description ? ` /** ${leaf.description.replace(/\*\//g, '* /')} */` : '';
         lines.push(`  --${name}: ${val};${desc}`);
       }
@@ -499,10 +499,10 @@ const MAPPING_FOOTER = `
    is the light value.
 `;
 
-function renderTokenLine(leaf, root) {
+function renderTokenLine(leaf) {
   const cssName = pathToCssName(leaf.path);
   const tsName = pathToTsName(leaf.path);
-  const css = formatValueCss(leaf, root);
+  const css = formatValueCss(leaf);
   const desc = leaf.description ? ` — ${leaf.description.replace(/\s+/g, ' ').trim()}` : '';
   return `- \`--${cssName}\` / \`${tsName}\` — \`${css}\`${desc}`;
 }
@@ -521,7 +521,7 @@ function buildTokenMappingDoc(buckets, root) {
         lines.push(`### ${bucket.key}.${sg.sub}`);
         lines.push('');
       }
-      for (const leaf of sg.leaves) lines.push(renderTokenLine(leaf, root));
+      for (const leaf of sg.leaves) lines.push(renderTokenLine(leaf));
       lines.push('');
     }
     sections.push(lines.join('\n'));

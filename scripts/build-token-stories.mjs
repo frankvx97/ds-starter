@@ -15,21 +15,6 @@ const __dirname = dirname(fileURLToPath(import.meta.url));
 const rawDir = resolve(__dirname, '../src/tokens/raw');
 const outFile = resolve(__dirname, '../src/docs/foundations/_generated/tokens.json');
 
-const FILES = [
-  'primitives',
-  'theme-light',
-  'theme-dark',
-  'focus',
-  'shadow',
-  'blur',
-  'typography',
-  'text-styles',
-  'radius',
-  'spacing',
-  'breakpoints',
-  'tailwind',
-];
-
 /** Pull every `--name: value;` declaration from the top-level :root block. */
 function parseVars(css) {
   const out = [];
@@ -91,14 +76,13 @@ function build() {
 
   mkdirSync(dirname(outFile), { recursive: true });
   writeFileSync(outFile, JSON.stringify(manifest, null, 2));
-  // eslint-disable-next-line no-console
+
   console.log(`[tokens:stories] wrote ${outFile}`);
 }
 
 build();
 
 if (process.argv.includes('--watch')) {
-  // eslint-disable-next-line no-console
   console.log(`[tokens:stories] watching ${rawDir}`);
   let timer;
   watch(rawDir, { persistent: true }, (_event, filename) => {

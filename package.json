@@ -45,7 +45,7 @@
     "tokens:sync": "node scripts/wrap-theme.mjs && node scripts/build-token-stories.mjs",
     "tokens:sync:watch": "node scripts/wrap-theme.mjs --watch & node scripts/build-token-stories.mjs --watch",
     "theme:wrap": "node scripts/wrap-theme.mjs",
-    "build": "pnpm tokens:build && vite build",
+    "build": "pnpm tokens:sync && vite build",
     "build:storybook": "pnpm tokens:sync && storybook build",
     "typecheck": "tsc --noEmit",
     "lint": "eslint . && pnpm lint:css",

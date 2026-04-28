@@ -173,7 +173,7 @@ async function selfDestruct() {
       await rm(scriptsDir, { recursive: true, force: true });
     }
     log.ok('Cleaned up init script');
-  } catch (err) {
+  } catch {
     log.warn('Could not delete init script — remove scripts/init.mjs manually.');
   }
 }
