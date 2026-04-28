@@ -16,7 +16,15 @@
  *   3. Restores files from .token-pipeline-backup/<mode>/ if present.
  */
 
-import { existsSync, mkdirSync, readdirSync, readFileSync, renameSync, rmSync, writeFileSync } from 'node:fs';
+import {
+  existsSync,
+  mkdirSync,
+  readdirSync,
+  readFileSync,
+  renameSync,
+  rmSync,
+  writeFileSync,
+} from 'node:fs';
 import { dirname, join, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
@@ -36,8 +44,10 @@ const PATHS = {
   sot: ['src/tokens/raw'],
 };
 
-const SD_BRANCH_RE = /\/\* ── \(A\) Style Dictionary path — (ACTIVE|DISABLED) ───+ \*\/\n([\s\S]*?)(?=\n\/\* ── \(B\))/;
-const SOT_BRANCH_RE = /\/\* ── \(B\) Tokens SOT path — (ACTIVE|DISABLED) ───+ \*\/\n([\s\S]*?)(?=\n\/\* Font-face)/;
+const SD_BRANCH_RE =
+  /\/\* ── \(A\) Style Dictionary path — (ACTIVE|DISABLED) ───+ \*\/\n([\s\S]*?)(?=\n\/\* ── \(B\))/;
+const SOT_BRANCH_RE =
+  /\/\* ── \(B\) Tokens SOT path — (ACTIVE|DISABLED) ───+ \*\/\n([\s\S]*?)(?=\n\/\* Font-face)/;
 
 function fail(msg) {
   console.error(`✗ ${msg}`);
@@ -70,7 +80,9 @@ function toggleBranches(mode) {
   css = css.replace(SOT_BRANCH_RE, setBranch(sotMatch[2], '(B)', mode === 'sot'));
 
   writeFileSync(GLOBAL_CSS, css);
-  console.log(`✓ global.css: activated ${mode === 'sd' ? '(A) Style Dictionary' : '(B) Tokens SOT'}`);
+  console.log(
+    `✓ global.css: activated ${mode === 'sd' ? '(A) Style Dictionary' : '(B) Tokens SOT'}`,
+  );
 }
 
 function moveToBackup(relPath, mode) {
@@ -116,7 +128,9 @@ function switchTo(mode) {
   const keep = mode;
   const drop = mode === 'sd' ? 'sot' : 'sd';
 
-  console.log(`→ Switching token pipeline to: ${keep === 'sd' ? 'Style Dictionary' : 'Tokens SOT'}`);
+  console.log(
+    `→ Switching token pipeline to: ${keep === 'sd' ? 'Style Dictionary' : 'Tokens SOT'}`,
+  );
 
   // Restore files for the chosen mode (if previously backed up).
   for (const p of PATHS[keep]) restoreFromBackup(p, keep);
@@ -134,7 +148,9 @@ function switchTo(mode) {
     console.log('  • Drop your Tokens SOT *.css exports into src/tokens/raw/');
     console.log('  • Update the @import list in src/styles/global.css to match.');
   }
-  console.log('  • Unused files are preserved under .token-pipeline-backup/ — delete it once you are sure.');
+  console.log(
+    '  • Unused files are preserved under .token-pipeline-backup/ — delete it once you are sure.',
+  );
 }
 
 const mode = process.argv[2];

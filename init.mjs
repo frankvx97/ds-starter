@@ -75,7 +75,11 @@ async function prompt(rl, question, { default: def, validate, errorMsg } = {}) {
 
 async function confirm(rl, question, def = true) {
   const hint = def ? 'Y/n' : 'y/N';
-  const answer = (await rl.question(`${c.bold}?${c.reset} ${question} ${c.dim}(${hint})${c.reset} `)).trim().toLowerCase();
+  const answer = (
+    await rl.question(`${c.bold}?${c.reset} ${question} ${c.dim}(${hint})${c.reset} `)
+  )
+    .trim()
+    .toLowerCase();
   if (!answer) return def;
   return answer === 'y' || answer === 'yes';
 }
@@ -121,11 +125,9 @@ async function updateReadme({ scope, name, description }) {
     let endIdx = firstHeadingIdx + 1;
     while (endIdx < lines.length && lines[endIdx].trim() !== '') endIdx++;
     // Replace [firstHeading, endIdx) with the new title
-    updated = [
-      ...lines.slice(0, firstHeadingIdx),
-      title.trimEnd(),
-      ...lines.slice(endIdx),
-    ].join('\n');
+    updated = [...lines.slice(0, firstHeadingIdx), title.trimEnd(), ...lines.slice(endIdx)].join(
+      '\n',
+    );
   }
 
   await writeFile(path, updated, 'utf8');
@@ -147,7 +149,10 @@ function initGit() {
   try {
     execSync('git init -b main', { cwd: ROOT, stdio: 'ignore' });
     execSync('git add -A', { cwd: ROOT, stdio: 'ignore' });
-    execSync('git commit -m "chore: initial commit from ds-starter"', { cwd: ROOT, stdio: 'ignore' });
+    execSync('git commit -m "chore: initial commit from ds-starter"', {
+      cwd: ROOT,
+      stdio: 'ignore',
+    });
     log.ok('Initialized fresh git repo with initial commit');
   } catch (err) {
     log.warn('Could not initialize git automatically — you can run `git init` manually.');
@@ -203,7 +208,7 @@ async function main() {
     });
 
     const description = await prompt(rl, 'One-line description?', {
-      default: "My team’s design system.",
+      default: 'My team’s design system.',
     });
 
     const githubUrl = `https://github.com/${scope}/${name}`;
@@ -244,7 +249,9 @@ async function main() {
     log.info('Next steps:');
     log.info('  1.  pnpm install');
     log.info('  2.  pnpm dev');
-    log.info(`  3.  Create the repo on GitHub:  gh repo create ${scope}/${name} --private --source=. --push`);
+    log.info(
+      `  3.  Create the repo on GitHub:  gh repo create ${scope}/${name} --private --source=. --push`,
+    );
     log.blank();
   } catch (err) {
     rl.close();

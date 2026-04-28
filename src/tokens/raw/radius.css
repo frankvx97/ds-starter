@@ -1,5 +1,4 @@
 :root {
-
   /* radius */
   --radius-none: var(--dimensions-0);
   --radius-xs: var(--dimensions-0․5);
@@ -12,5 +11,4 @@
   --radius-3xl: var(--dimensions-6);
   --radius-4xl: var(--dimensions-8);
   --radius-full: var(--dimensions-9999);
-
 }

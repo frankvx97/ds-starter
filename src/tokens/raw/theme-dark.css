@@ -1,5 +1,4 @@
 :root {
-
   /* theme */
   --accent-default: var(--palette-sky-500);
   --accent-hover: var(--palette-sky-400);
@@ -76,5 +75,4 @@
   --background-secondary: var(--palette-neutral-950);
   --background-tertiary: var(--palette-neutral-900);
   --background-inverse: var(--palette-snow);
-
 }

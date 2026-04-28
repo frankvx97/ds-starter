@@ -1,5 +1,4 @@
 :root {
-
   /* tailwind */
   /* Box Shadow */
   --tailwind-box-shadow-sm: 0px 1px 2px 0px #0000000d;
@@ -29,7 +28,6 @@
   --tailwind-backdrop-blur-xl: 24px;
   --tailwind-backdrop-blur-2xl: 40px;
   --tailwind-backdrop-blur-3xl: 64px;
-
 }
 
 /* Blur utilities */

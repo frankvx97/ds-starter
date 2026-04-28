@@ -1,5 +1,4 @@
 :root {
-
   /* spacing */
   --space-0: var(--dimensions-0);
   --space-px: var(--dimensions-px);
@@ -36,5 +35,4 @@
   --space-72: var(--dimensions-72);
   --space-80: var(--dimensions-80);
   --space-96: var(--dimensions-96);
-
 }

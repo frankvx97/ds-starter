@@ -1,9 +1,7 @@
 :root {
-
   /* blur */
   --blur-default: var(--blur);
   --blur-backdrop: 12px;
-
 }
 
 /* Blur utilities */

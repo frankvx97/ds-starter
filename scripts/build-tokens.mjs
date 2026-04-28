@@ -29,21 +29,33 @@ const TOKENS_TS = path.join(OUT_DIR, 'tokens.ts');
 const TYPOGRAPHY_CSS = path.join(OUT_DIR, 'typography.css');
 const MAPPING_DOC = path.join(
   ROOT,
-  '.claude/skills/figma-to-react-components/references/token-mapping-guide.md'
+  '.claude/skills/figma-to-react-components/references/token-mapping-guide.md',
 );
 
 // --- font-weight keyword mapping (MDN) ----------------------------------------
 const WEIGHT_KEYWORDS = {
-  thin: 100, hairline: 100,
-  'extra light': 200, extralight: 200, ultralight: 200,
+  thin: 100,
+  hairline: 100,
+  'extra light': 200,
+  extralight: 200,
+  ultralight: 200,
   light: 300,
-  normal: 400, regular: 400, book: 400,
+  normal: 400,
+  regular: 400,
+  book: 400,
   medium: 500,
-  'semi bold': 600, semibold: 600, 'demi bold': 600, demibold: 600,
+  'semi bold': 600,
+  semibold: 600,
+  'demi bold': 600,
+  demibold: 600,
   bold: 700,
-  'extra bold': 800, extrabold: 800, ultrabold: 800,
-  black: 900, heavy: 900,
-  'extra black': 950, ultrablack: 950,
+  'extra bold': 800,
+  extrabold: 800,
+  ultrabold: 800,
+  black: 900,
+  heavy: 900,
+  'extra black': 950,
+  ultrablack: 950,
 };
 
 function parseFontWeight(raw) {
@@ -53,7 +65,10 @@ function parseFontWeight(raw) {
   if (/^\d+$/.test(str)) return { weight: Number(str), italic: false };
   const lower = str.toLowerCase();
   const italic = /\b(italic|oblique)\b/.test(lower);
-  const cleaned = lower.replace(/\b(italic|oblique)\b/g, '').replace(/\s+/g, ' ').trim();
+  const cleaned = lower
+    .replace(/\b(italic|oblique)\b/g, '')
+    .replace(/\s+/g, ' ')
+    .trim();
   if (WEIGHT_KEYWORDS[cleaned] !== undefined) return { weight: WEIGHT_KEYWORDS[cleaned], italic };
   return { weight: str, italic };
 }
@@ -98,7 +113,7 @@ function pathToTsName(pathSegments) {
         .split(' ')
         .filter(Boolean)
         .map((w) => w.charAt(0).toUpperCase() + w.slice(1))
-        .join('')
+        .join(''),
     )
     .join('');
 }
@@ -141,7 +156,9 @@ function* walkLeaves(node, pathSegments = []) {
 
 // Resolve `{a.b.c}` against the source tree.
 function resolveRef(ref, root) {
-  const m = String(ref).trim().match(/^\{([^}]+)\}$/);
+  const m = String(ref)
+    .trim()
+    .match(/^\{([^}]+)\}$/);
   if (!m) return null;
   const segs = m[1].split('.');
   let cursor = root;
@@ -543,7 +560,9 @@ const typoCount = buildTypographyCSS(root);
 const sectionCount = buildTokenMappingDoc(buckets, root);
 
 const totalTokens = buckets.reduce((n, b) => n + b.leaves.length, 0);
-console.log(`✔︎ ${path.relative(ROOT, TOKENS_CSS)} (${totalTokens} tokens, ${buckets.length} collections)`);
+console.log(
+  `✔︎ ${path.relative(ROOT, TOKENS_CSS)} (${totalTokens} tokens, ${buckets.length} collections)`,
+);
 console.log(`✔︎ ${path.relative(ROOT, TOKENS_TS)}`);
 console.log(`✔︎ ${path.relative(ROOT, TYPOGRAPHY_CSS)} (${typoCount} classes)`);
 console.log(`✔︎ ${path.relative(ROOT, MAPPING_DOC)} (${sectionCount} sections)`);

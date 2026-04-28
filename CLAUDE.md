@@ -3,6 +3,7 @@
 This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
 ## Design System Usage Rules
+
 > [!IMPORTANT]
 > Always follow the rules below, do not skip or ignore them by any means.
 
@@ -47,6 +48,7 @@ pnpm release           # build + changeset publish
 ```
 
 Run a single test file:
+
 ```bash
 pnpm vitest run src/components/atoms/Button/Button.test.tsx
 ```
@@ -114,7 +116,9 @@ Uses Changesets for versioning. Package publishes to GitHub Packages (private re
 ## Asset Dependencies
 
 ### Icons
+
 Gravity UI Icons (https://github.com/gravity-ui/icons) — prefer the package over individual SVG exports.
 
 ### Fonts
+
 Inter (`src/assets/fonts/Inter-*.woff2`, weights 400/500/600/700/800), self-hosted and loaded via `src/styles/global.css`.

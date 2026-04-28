@@ -57,10 +57,10 @@ ds-starter/
 
 Two **mutually exclusive** token pipelines are supported. Pick one — using both at the same time leads to conflicting CSS variables and confusing cascade order. The repo ships with **Tokens SOT** active by default; switch with `pnpm tokens:switch sd` if you'd rather use Style Dictionary.
 
-| From Figma                                           | Drop location        | Built by         | Mode  |
-| ---------------------------------------------------- | -------------------- | ---------------- | ----- |
+| From Figma                                             | Drop location        | Built by         | Mode  |
+| ------------------------------------------------------ | -------------------- | ---------------- | ----- |
 | **Figma REST API / MCP / Tokens Studio plugin** → JSON | `src/tokens/source/` | Style Dictionary | `sd`  |
-| **Tokens SOT** plugin → CSS/SCSS                     | `src/tokens/raw/`    | imported as-is   | `sot` |
+| **Tokens SOT** plugin → CSS/SCSS                       | `src/tokens/raw/`    | imported as-is   | `sot` |
 
 ### Style Dictionary mode (`sd`)
 
@@ -135,24 +135,24 @@ Then re-export from `src/index.ts` so it's part of the public API.
 
 ## Scripts
 
-| Command                 | What it does                                                                      |
-| ----------------------- | --------------------------------------------------------------------------------- |
-| `pnpm dev`              | `tokens:sync` + Storybook at `:6060`.                                             |
-| `pnpm tokens:build`     | Compile DTCG JSON → `tokens.css` + `tokens.ts` + `typography.css` (`sd` mode).    |
-| `pnpm tokens:watch`     | Watch `src/tokens/source/` and rebuild (`sd` mode).                               |
-| `pnpm tokens:sync`      | `wrap-theme.mjs` + `build-token-stories.mjs` (`sot` mode — run after re-export).  |
-| `pnpm tokens:stories`   | Regenerate the token-reference MDX under `src/docs/foundations/`.                 |
-| `pnpm tokens:extract`   | Pull tokens from a Figma file via the REST API → DTCG JSON.                       |
-| `pnpm tokens:switch`    | Toggle between `sd` and `sot` pipelines.                                          |
-| `pnpm build`            | Build the library (ESM + types) into `dist/`.                                     |
-| `pnpm build:storybook`  | Static Storybook into `storybook-static/`.                                        |
-| `pnpm typecheck`        | `tsc --noEmit`.                                                                   |
-| `pnpm lint`             | ESLint + Stylelint (enforces semantic-token-only CSS).                            |
-| `pnpm lint:css`         | Stylelint only — blocks `var(--palette-*)` in components.                         |
-| `pnpm format`           | Prettier write.                                                                   |
-| `pnpm test`             | Vitest (jsdom).                                                                   |
-| `pnpm changeset`        | Record a version bump for your PR.                                                |
-| `pnpm release`          | Build + publish to GitHub Packages (used by CI, not locally).                     |
+| Command                | What it does                                                                     |
+| ---------------------- | -------------------------------------------------------------------------------- |
+| `pnpm dev`             | `tokens:sync` + Storybook at `:6060`.                                            |
+| `pnpm tokens:build`    | Compile DTCG JSON → `tokens.css` + `tokens.ts` + `typography.css` (`sd` mode).   |
+| `pnpm tokens:watch`    | Watch `src/tokens/source/` and rebuild (`sd` mode).                              |
+| `pnpm tokens:sync`     | `wrap-theme.mjs` + `build-token-stories.mjs` (`sot` mode — run after re-export). |
+| `pnpm tokens:stories`  | Regenerate the token-reference MDX under `src/docs/foundations/`.                |
+| `pnpm tokens:extract`  | Pull tokens from a Figma file via the REST API → DTCG JSON.                      |
+| `pnpm tokens:switch`   | Toggle between `sd` and `sot` pipelines.                                         |
+| `pnpm build`           | Build the library (ESM + types) into `dist/`.                                    |
+| `pnpm build:storybook` | Static Storybook into `storybook-static/`.                                       |
+| `pnpm typecheck`       | `tsc --noEmit`.                                                                  |
+| `pnpm lint`            | ESLint + Stylelint (enforces semantic-token-only CSS).                           |
+| `pnpm lint:css`        | Stylelint only — blocks `var(--palette-*)` in components.                        |
+| `pnpm format`          | Prettier write.                                                                  |
+| `pnpm test`            | Vitest (jsdom).                                                                  |
+| `pnpm changeset`       | Record a version bump for your PR.                                               |
+| `pnpm release`         | Build + publish to GitHub Packages (used by CI, not locally).                    |
 
 ## Publishing to GitHub Packages
 

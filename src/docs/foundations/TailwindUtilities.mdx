@@ -19,16 +19,38 @@ Source: `src/tokens/raw/tailwind.css`.
 <table style={{ width: '100%', borderCollapse: 'collapse', marginBlock: 16 }}>
   <thead>
     <tr>
-      <th style={{ textAlign: 'left', padding: '8px 12px', borderBottom: '1px solid #e2e8f0' }}>Class</th>
-      <th style={{ textAlign: 'left', padding: '8px 12px', borderBottom: '1px solid #e2e8f0' }}>Declaration</th>
+      <th style={{ textAlign: 'left', padding: '8px 12px', borderBottom: '1px solid #e2e8f0' }}>
+        Class
+      </th>
+      <th style={{ textAlign: 'left', padding: '8px 12px', borderBottom: '1px solid #e2e8f0' }}>
+        Declaration
+      </th>
     </tr>
   </thead>
   <tbody>
     {tokens.tailwind.utilities.map((u) => (
       <tr key={u.selector}>
-        <td style={{ padding: '8px 12px', fontFamily: 'monospace', fontSize: 13, borderBottom: '1px solid #e2e8f0' }}>{u.selector}</td>
-        <td style={{ padding: '8px 12px', fontFamily: 'monospace', fontSize: 13, borderBottom: '1px solid #e2e8f0' }}>
-          {Object.entries(u.declarations).map(([k, v]) => `${k}: ${v}`).join('; ')}
+        <td
+          style={{
+            padding: '8px 12px',
+            fontFamily: 'monospace',
+            fontSize: 13,
+            borderBottom: '1px solid #e2e8f0',
+          }}
+        >
+          {u.selector}
+        </td>
+        <td
+          style={{
+            padding: '8px 12px',
+            fontFamily: 'monospace',
+            fontSize: 13,
+            borderBottom: '1px solid #e2e8f0',
+          }}
+        >
+          {Object.entries(u.declarations)
+            .map(([k, v]) => `${k}: ${v}`)
+            .join('; ')}
         </td>
       </tr>
     ))}

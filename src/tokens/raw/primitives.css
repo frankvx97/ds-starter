@@ -1,5 +1,4 @@
 :root {
-
   /* primitives */
   --palette-white: #ffffff;
   --palette-snow: #fcfcfc;
@@ -321,5 +320,4 @@
   --dimensions-xl: 1280px;
   --dimensions-2xl: 1536px;
   --dimensions-9999: 9999px;
-
 }

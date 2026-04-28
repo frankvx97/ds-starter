@@ -13,10 +13,7 @@ import { fileURLToPath } from 'node:url';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const rawDir = resolve(__dirname, '../src/tokens/raw');
-const outFile = resolve(
-  __dirname,
-  '../src/docs/foundations/_generated/tokens.json'
-);
+const outFile = resolve(__dirname, '../src/docs/foundations/_generated/tokens.json');
 
 const FILES = [
   'primitives',

@@ -10,8 +10,7 @@ const DOC_CARD_BG = '#ffffff';
 const cell: CSSProperties = {
   padding: '8px 12px',
   borderBottom: `1px solid ${DOC_BORDER}`,
-  fontFamily:
-    'ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace',
+  fontFamily: 'ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace',
   fontSize: 13,
   verticalAlign: 'middle',
   color: DOC_HEADER_FG,
@@ -176,8 +175,7 @@ export function ColorSwatchGrid({ vars }: { vars: Var[] }) {
             border: `1px solid ${DOC_BORDER}`,
             borderRadius: 8,
             overflow: 'hidden',
-            fontFamily:
-              'ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace',
+            fontFamily: 'ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace',
             fontSize: 12,
           }}
         >
@@ -221,8 +219,7 @@ export function ShadowGrid({ vars }: { vars: Var[] }) {
           />
           <div
             style={{
-              fontFamily:
-                'ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace',
+              fontFamily: 'ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace',
               fontSize: 12,
             }}
           >
@@ -266,8 +263,7 @@ export function FocusGrid({ vars }: { vars: Var[] }) {
           />
           <div
             style={{
-              fontFamily:
-                'ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, sans-serif',
+              fontFamily: 'ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, sans-serif',
               fontSize: 14,
               color: DOC_HEADER_FG,
             }}
@@ -363,8 +359,7 @@ export function BlurGrid({ vars }: { vars: Var[] }) {
             </div>
             <div
               style={{
-                fontFamily:
-                  'ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, sans-serif',
+                fontFamily: 'ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, sans-serif',
                 fontSize: 14,
                 color: DOC_HEADER_FG,
               }}
@@ -372,8 +367,7 @@ export function BlurGrid({ vars }: { vars: Var[] }) {
               {labelFor(v.name)}{' '}
               <span
                 style={{
-                  fontFamily:
-                    'ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace',
+                  fontFamily: 'ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace',
                   fontSize: 12,
                   opacity: 0.6,
                 }}
@@ -421,17 +415,14 @@ export function TextStylePreview({ classes }: { classes: TextStyle[] }) {
   }, [classes]);
 
   const availableCats = useMemo(
-    () =>
-      [
-        ...TEXT_STYLE_CATEGORIES.filter((c) => grouped.has(c.id)).map((c) => ({
-          id: c.id as CategoryId,
-          label: c.label,
-        })),
-        ...(grouped.has('other')
-          ? [{ id: 'other' as CategoryId, label: 'Other' }]
-          : []),
-      ],
-    [grouped]
+    () => [
+      ...TEXT_STYLE_CATEGORIES.filter((c) => grouped.has(c.id)).map((c) => ({
+        id: c.id as CategoryId,
+        label: c.label,
+      })),
+      ...(grouped.has('other') ? [{ id: 'other' as CategoryId, label: 'Other' }] : []),
+    ],
+    [grouped],
   );
 
   const [active, setActive] = useState<CategoryId | 'all'>('all');
@@ -511,9 +502,7 @@ export function TextStylePreview({ classes }: { classes: TextStyle[] }) {
                     fontWeight: d['font-weight'] as CSSProperties['fontWeight'],
                     letterSpacing: d['letter-spacing'],
                     textDecoration: d['text-decoration'],
-                    textTransform: d[
-                      'text-transform'
-                    ] as CSSProperties['textTransform'],
+                    textTransform: d['text-transform'] as CSSProperties['textTransform'],
                     margin: 0,
                     color: DOC_HEADER_FG,
                   };
@@ -537,12 +526,9 @@ export function TextStylePreview({ classes }: { classes: TextStyle[] }) {
                           color: DOC_HEADER_FG,
                         }}
                       >
-                        {c.selector} — {d['font-size']} / {d['font-weight']} /{' '}
-                        {d['line-height']}
+                        {c.selector} — {d['font-size']} / {d['font-weight']} / {d['line-height']}
                       </div>
-                      <div style={sampleStyle}>
-                        The quick brown fox jumps over the lazy dog
-                      </div>
+                      <div style={sampleStyle}>The quick brown fox jumps over the lazy dog</div>
                     </div>
                   );
                 })}
@@ -555,15 +541,7 @@ export function TextStylePreview({ classes }: { classes: TextStyle[] }) {
   );
 }
 
-function Chip({
-  label,
-  active,
-  onClick,
-}: {
-  label: string;
-  active: boolean;
-  onClick: () => void;
-}) {
+function Chip({ label, active, onClick }: { label: string; active: boolean; onClick: () => void }) {
   return (
     <button
       type="button"
@@ -661,7 +639,7 @@ export function PrimitivesGrouped({ vars }: { vars: Var[] }) {
   }
 
   const orderedColors = PALETTE_COLOR_ORDER.filter(
-    (k) => !PALETTE_NEUTRAL_SINGLES.has(k) && colorGroups.has(k)
+    (k) => !PALETTE_NEUTRAL_SINGLES.has(k) && colorGroups.has(k),
   );
   for (const k of colorGroups.keys()) {
     if (!orderedColors.includes(k)) orderedColors.push(k);

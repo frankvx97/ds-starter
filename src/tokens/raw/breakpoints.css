@@ -1,10 +1,8 @@
 :root {
-
   /* breakpoints */
   --breakpoints-sm: var(--dimensions-sm);
   --breakpoints-md: var(--dimensions-md);
   --breakpoints-lg: var(--dimensions-lg);
   --breakpoints-xl: var(--dimensions-xl);
   --breakpoints-2xl: var(--dimensions-2xl);
-
 }

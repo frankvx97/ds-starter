@@ -71,7 +71,11 @@ async function prompt(rl, question, { default: def, validate, errorMsg } = {}) {
 
 async function confirm(rl, question, def = true) {
   const hint = def ? 'Y/n' : 'y/N';
-  const answer = (await rl.question(`${c.bold}?${c.reset} ${question} ${c.dim}(${hint})${c.reset} `)).trim().toLowerCase();
+  const answer = (
+    await rl.question(`${c.bold}?${c.reset} ${question} ${c.dim}(${hint})${c.reset} `)
+  )
+    .trim()
+    .toLowerCase();
   if (!answer) return def;
   return answer === 'y' || answer === 'yes';
 }
@@ -89,11 +93,18 @@ async function multiSelect(rl, label, items) {
     console.log(`  ${c.dim}${String(i + 1).padStart(2, ' ')}.${c.reset} ${item.label}`);
   }
   while (true) {
-    const raw = (await rl.question(
-      `${c.bold}?${c.reset} Pick groups ${c.dim}(comma-separated, "all", empty = all)${c.reset} `,
-    )).trim().toLowerCase();
+    const raw = (
+      await rl.question(
+        `${c.bold}?${c.reset} Pick groups ${c.dim}(comma-separated, "all", empty = all)${c.reset} `,
+      )
+    )
+      .trim()
+      .toLowerCase();
     if (raw === '' || raw === 'all') return items.slice();
-    const picks = raw.split(/[\s,]+/).filter(Boolean).map((s) => Number.parseInt(s, 10));
+    const picks = raw
+      .split(/[\s,]+/)
+      .filter(Boolean)
+      .map((s) => Number.parseInt(s, 10));
     if (picks.some((n) => !Number.isInteger(n) || n < 1 || n > items.length)) {
       log.err(`Use numbers between 1 and ${items.length}.`);
       continue;
@@ -175,15 +186,20 @@ async function figmaFetch(path, token) {
 // ─── helpers ──────────────────────────────────────────────────────────────
 
 const slug = (s) =>
-  s.trim().toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '') || 'untitled';
+  s
+    .trim()
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/^-+|-+$/g, '') || 'untitled';
 
 const slugPath = (name) => name.split('/').map(slug).filter(Boolean);
 
 function rgbaToHex({ r, g, b, a = 1 }) {
-  const h = (n) => Math.round(Math.max(0, Math.min(1, n)) * 255).toString(16).padStart(2, '0');
-  return a < 1
-    ? `#${h(r)}${h(g)}${h(b)}${h(a)}`
-    : `#${h(r)}${h(g)}${h(b)}`;
+  const h = (n) =>
+    Math.round(Math.max(0, Math.min(1, n)) * 255)
+      .toString(16)
+      .padStart(2, '0');
+  return a < 1 ? `#${h(r)}${h(g)}${h(b)}${h(a)}` : `#${h(r)}${h(g)}${h(b)}`;
 }
 
 function setDeep(root, path, value) {
@@ -349,7 +365,9 @@ function paintToToken(paint, varIdToPath, danglingRefs) {
 }
 
 function effectsToToken(effects) {
-  const shadows = effects.filter((e) => e.visible !== false && (e.type === 'DROP_SHADOW' || e.type === 'INNER_SHADOW'));
+  const shadows = effects.filter(
+    (e) => e.visible !== false && (e.type === 'DROP_SHADOW' || e.type === 'INNER_SHADOW'),
+  );
   if (shadows.length === 0) return null;
   const values = shadows.map((e) => ({
     color: rgbaToHex(e.color),
@@ -378,7 +396,8 @@ function textStyleToToken(style) {
   if (lh) value.lineHeight = lh;
   if (ls) value.letterSpacing = ls;
   if (style.textCase && style.textCase !== 'ORIGINAL') value.textCase = style.textCase;
-  if (style.textDecoration && style.textDecoration !== 'NONE') value.textDecoration = style.textDecoration;
+  if (style.textDecoration && style.textDecoration !== 'NONE')
+    value.textDecoration = style.textDecoration;
   return { $type: 'typography', $value: value };
 }
 
@@ -413,7 +432,12 @@ function buildVariableTokens(group, idToPath, danglingRefs) {
     const $type = dtcgTypeForVariable(v);
     if (!$type) continue;
 
-    const $value = formatVariableValue(v, v.valuesByMode[defaultMode.modeId], idToPath, danglingRefs);
+    const $value = formatVariableValue(
+      v,
+      v.valuesByMode[defaultMode.modeId],
+      idToPath,
+      danglingRefs,
+    );
     const token = { $type, $value };
 
     if (modes.length > 1) {
@@ -441,7 +465,10 @@ function buildStyleTokens(group, nodesById, varIdToPath, danglingRefs, warnings)
       warnings.push(`Skipped style "${s.name}" (${s.style_type}) — unsupported or empty.`);
       continue;
     }
-    token.$extensions = { ...(token.$extensions || {}), 'com.figma': { styleKey: s.key, nodeId: s.node_id } };
+    token.$extensions = {
+      ...(token.$extensions || {}),
+      'com.figma': { styleKey: s.key, nodeId: s.node_id },
+    };
     if (s.description) token.$description = s.description;
     const subPath = styleSubPath(s.name);
     if (subPath.length === 0) continue;
@@ -522,12 +549,18 @@ async function main() {
       const data = await figmaFetch(`/files/${fileKey}/variables/local`, token);
       variableMeta = data.meta;
       const count = Object.keys(variableMeta.variables || {}).length;
-      log.ok(`Got ${count} variable${count === 1 ? '' : 's'} across ${Object.keys(variableMeta.variableCollections || {}).length} collection(s).`);
+      log.ok(
+        `Got ${count} variable${count === 1 ? '' : 's'} across ${Object.keys(variableMeta.variableCollections || {}).length} collection(s).`,
+      );
     } catch (err) {
       if (err.status === 403) {
-        log.warn('Variables endpoint returned 403 — your Figma plan likely is not Enterprise. Continuing with styles only.');
+        log.warn(
+          'Variables endpoint returned 403 — your Figma plan likely is not Enterprise. Continuing with styles only.',
+        );
       } else if (err.status === 404) {
-        log.warn('Variables endpoint returned 404 — file has no local variables. Continuing with styles only.');
+        log.warn(
+          'Variables endpoint returned 404 — file has no local variables. Continuing with styles only.',
+        );
       } else {
         throw err;
       }
@@ -619,7 +652,9 @@ async function main() {
     }
     if (danglingRefs.size > 0) {
       log.blank();
-      log.warn(`${danglingRefs.size} unresolved alias reference${danglingRefs.size === 1 ? '' : 's'} — the target variable was not in the selected groups.`);
+      log.warn(
+        `${danglingRefs.size} unresolved alias reference${danglingRefs.size === 1 ? '' : 's'} — the target variable was not in the selected groups.`,
+      );
       log.info('Re-run and include the referenced collection to resolve them.');
     }
 
@@ -631,7 +666,8 @@ async function main() {
     rl.close();
     log.blank();
     if (err.status === 401) log.err('Figma rejected the token (401). Double-check the PAT.');
-    else if (err.status === 404) log.err('File not found (404). Check the URL/key and that the token can access it.');
+    else if (err.status === 404)
+      log.err('File not found (404). Check the URL/key and that the token can access it.');
     else log.err(err.message);
     process.exit(1);
   }
