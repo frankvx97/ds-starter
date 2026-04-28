@@ -1,0 +1,16 @@
+:root {
+
+  /* radius */
+  --radius-none: var(--dimensions-0);
+  --radius-xs: var(--dimensions-0․5);
+  --radius-sm: var(--dimensions-1);
+  --radius-md: var(--dimensions-1․5);
+  --radius-lg: var(--dimensions-2);
+  --radius-xl: var(--dimensions-3);
+  --radius-2xl: var(--dimensions-4);
+  --radius-2-5xl: var(--dimensions-5);
+  --radius-3xl: var(--dimensions-6);
+  --radius-4xl: var(--dimensions-8);
+  --radius-full: var(--dimensions-9999);
+
+}

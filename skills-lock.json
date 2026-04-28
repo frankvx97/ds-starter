@@ -1,0 +1,10 @@
+{
+  "version": 1,
+  "skills": {
+    "figma-to-react-components": {
+      "source": "ravnhq/ai-toolkit",
+      "sourceType": "github",
+      "computedHash": "307b158cf5994d4a53ba91f87fa154aca1a6cc79181902a0b7f872804f95a90f"
+    }
+  }
+}

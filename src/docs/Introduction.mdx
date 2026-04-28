@@ -1,0 +1,31 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+<Meta title="Introduction" />
+
+# ds-starter
+
+Welcome to the **ds-starter** design system workshop.
+
+This Storybook documents the design tokens and components in `src/`. The
+**Foundations** section is generated automatically from
+[`src/tokens/raw/*.css`](https://) — keep that folder as the source of truth, run
+`pnpm tokens:stories` (or use `pnpm tokens:stories:watch` during the workshop),
+and the docs below will reflect the latest values.
+
+## Sections
+
+- **Foundations** — design tokens grouped by category (primitives, theme, focus,
+  shadows, blur, typography, radius, spacing, breakpoints, tailwind utilities).
+- **Atoms / Molecules / Organisms** — components built on top of the foundations.
+
+## Token tiers
+
+Tokens come in two tiers:
+
+1. **Primitives** (`--palette-*`) — raw values. Used **only** to feed semantic
+   tokens. Components should never reference them directly.
+2. **Semantic tokens** (`--accent-*`, `--default-*`, `--space-*`, `--radius-*`,
+   …) — the public API consumed by components.
+
+If a design need has no matching semantic token, propose a new one in
+`theme-light.css` + `theme-dark.css` rather than reaching into a primitive.

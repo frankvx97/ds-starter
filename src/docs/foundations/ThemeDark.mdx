@@ -1,0 +1,11 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+import tokens from './_generated/tokens.json';
+import { ThemeGrouped } from './_components/TokenTable';
+
+<Meta title="Foundations/Theme/Dark" />
+
+# Theme — Dark
+
+Semantic tokens that components consume. Source: `src/tokens/raw/theme-dark.css`.
+
+<ThemeGrouped title="Dark mode" vars={tokens.theme.dark} scheme="dark" />

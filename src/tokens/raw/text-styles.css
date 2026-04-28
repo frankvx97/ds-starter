@@ -1,0 +1,1129 @@
+/* Typography */
+
+.text-heading-1 {
+  font-family: var(--font-family);
+  font-size: 36px;
+  line-height: 1.12;
+  font-weight: var(--font-extra-bold);
+  letter-spacing: normal;
+  text-wrap: balance;
+}
+
+.text-heading-2 {
+  font-family: var(--font-family);
+  font-size: 24px;
+  line-height: 1.34;
+  font-weight: var(--font-bold);
+  letter-spacing: normal;
+  text-wrap: balance;
+}
+
+.text-heading-3 {
+  font-family: var(--font-family);
+  font-size: 20px;
+  line-height: 1.6;
+  font-weight: var(--font-semi-bold);
+  letter-spacing: normal;
+  text-wrap: balance;
+}
+
+.text-heading-4 {
+  font-family: var(--font-family);
+  font-size: 16px;
+  line-height: 1.5;
+  font-weight: var(--font-semi-bold);
+  letter-spacing: normal;
+  text-wrap: balance;
+}
+
+.text-body-base {
+  font-family: var(--font-family);
+  font-size: 16px;
+  line-height: 1.5;
+  font-weight: var(--font-regular);
+  letter-spacing: normal;
+  --paragraph-spacing: 8px;
+}
+
+.text-body-base-medium {
+  font-family: var(--font-family);
+  font-size: 16px;
+  line-height: 1.5;
+  font-weight: var(--font-medium);
+  letter-spacing: normal;
+  --paragraph-spacing: 8px;
+}
+
+.text-body-sm {
+  font-family: var(--font-family);
+  font-size: 14px;
+  line-height: 1.43;
+  font-weight: var(--font-regular);
+  letter-spacing: normal;
+  --paragraph-spacing: 8px;
+}
+
+.text-body-sm-medium {
+  font-family: var(--font-family);
+  font-size: 14px;
+  line-height: 1.43;
+  font-weight: var(--font-medium);
+  letter-spacing: normal;
+  --paragraph-spacing: 8px;
+}
+
+.text-body-xs {
+  font-family: var(--font-family);
+  font-size: 12px;
+  line-height: 1.34;
+  font-weight: var(--font-regular);
+  letter-spacing: normal;
+}
+
+.text-body-xs-medium {
+  font-family: var(--font-family);
+  font-size: 12px;
+  line-height: 1.34;
+  font-weight: var(--font-medium);
+  letter-spacing: normal;
+}
+
+.text-link-base {
+  font-family: var(--font-family);
+  font-size: 16px;
+  line-height: 20px;
+  font-weight: var(--font-medium);
+  letter-spacing: normal;
+  text-decoration: underline;
+}
+
+.text-link-sm {
+  font-family: var(--font-family);
+  font-size: 14px;
+  line-height: 18px;
+  font-weight: var(--font-medium);
+  letter-spacing: normal;
+  text-decoration: underline;
+}
+
+.text-link-sm-hover {
+  font-family: var(--font-family);
+  font-size: 14px;
+  line-height: 18px;
+  font-weight: var(--font-medium);
+  letter-spacing: normal;
+  text-decoration: underline;
+}
+
+.text-text-field-base {
+  font-family: var(--font-family);
+  font-size: 16px;
+  line-height: 20px;
+  font-weight: var(--font-regular);
+  letter-spacing: normal;
+}
+
+.text-text-field-sm {
+  font-family: var(--font-family);
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: var(--font-regular);
+  letter-spacing: normal;
+}
+
+.text-button-base {
+  font-family: var(--font-family);
+  font-size: 16px;
+  line-height: 24px;
+  font-weight: var(--font-medium);
+  letter-spacing: normal;
+}
+
+.text-button-sm {
+  font-family: var(--font-family);
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: var(--font-medium);
+  letter-spacing: normal;
+}
+
+.text-tailwind-text-xs-font-thin {
+  font-family: Inter, system-ui;
+  font-size: 12px;
+  line-height: 16px;
+  font-weight: 100;
+  letter-spacing: normal;
+}
+
+.text-tailwind-text-xs-font-extralight {
+  font-family: Inter, system-ui;
+  font-size: 12px;
+  line-height: 16px;
+  font-weight: 200;
+  letter-spacing: normal;
+}
+
+.text-tailwind-text-xs-font-light {
+  font-family: Inter, system-ui;
+  font-size: 12px;
+  line-height: 16px;
+  font-weight: 300;
+  letter-spacing: normal;
+}
+
+.text-tailwind-text-xs-font-normal {
+  font-family: Inter, system-ui;
+  font-size: 12px;
+  line-height: 16px;
+  font-weight: 400;
+  letter-spacing: normal;
+}
+
+.text-tailwind-text-xs-font-medium {
+  font-family: Inter, system-ui;
+  font-size: 12px;
+  line-height: 16px;
+  font-weight: 500;
+  letter-spacing: normal;
+}
+
+.text-tailwind-text-xs-font-semibold {
+  font-family: Inter, system-ui;
+  font-size: 12px;
+  line-height: 16px;
+  font-weight: 600;
+  letter-spacing: normal;
+}
+
+.text-tailwind-text-xs-font-bold {
+  font-family: Inter, system-ui;
+  font-size: 12px;
+  line-height: 16px;
+  font-weight: 700;
+  letter-spacing: normal;
+}
+
+.text-tailwind-text-xs-font-extrabold {
+  font-family: Inter, system-ui;
+  font-size: 12px;
+  line-height: 16px;
+  font-weight: 800;
+  letter-spacing: normal;
+}
+
+.text-tailwind-text-xs-font-black {
+  font-family: Inter, system-ui;
+  font-size: 12px;
+  line-height: 16px;
+  font-weight: 900;
+  letter-spacing: normal;
+}
+
+.text-tailwind-text-sm-font-thin {
+  font-family: Inter, system-ui;
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: 100;
+  letter-spacing: normal;
+}
+
+.text-tailwind-text-sm-font-extralight {
+  font-family: Inter, system-ui;
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: 200;
+  letter-spacing: normal;
+}
+
+.text-tailwind-text-sm-font-light {
+  font-family: Inter, system-ui;
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: 300;
+  letter-spacing: normal;
+}
+
+.text-tailwind-text-sm-font-normal {
+  font-family: Inter, system-ui;
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: 400;
+  letter-spacing: normal;
+}
+
+.text-tailwind-text-sm-font-medium {
+  font-family: Inter, system-ui;
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: 500;
+  letter-spacing: normal;
+}
+
+.text-tailwind-text-sm-font-semibold {
+  font-family: Inter, system-ui;
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: 600;
+  letter-spacing: normal;
+}
+
+.text-tailwind-text-sm-font-bold {
+  font-family: Inter, system-ui;
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: 700;
+  letter-spacing: normal;
+}
+
+.text-tailwind-text-sm-font-extrabold {
+  font-family: Inter, system-ui;
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: 800;
+  letter-spacing: normal;
+}
+
+.text-tailwind-text-sm-font-black {
+  font-family: Inter, system-ui;
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: 900;
+  letter-spacing: normal;
+}
+
+.text-tailwind-text-base-font-thin {
+  font-family: Inter, system-ui;
+  font-size: 16px;
+  line-height: 24px;
+  font-weight: 100;
+  letter-spacing: normal;
+}
+
+.text-tailwind-text-base-font-extralight {
+  font-family: Inter, system-ui;
+  font-size: 16px;
+  line-height: 24px;
+  font-weight: 200;
+  letter-spacing: normal;
+}
+
+.text-tailwind-text-base-font-light {
+  font-family: Inter, system-ui;
+  font-size: 16px;
+  line-height: 24px;
+  font-weight: 300;
+  letter-spacing: normal;
+}
+
+.text-tailwind-text-base-font-normal {
+  font-family: Inter, system-ui;
+  font-size: 16px;
+  line-height: 24px;
+  font-weight: 400;
+  letter-spacing: normal;
+}
+
+.text-tailwind-text-base-font-medium {
+  font-family: Inter, system-ui;
+  font-size: 16px;
+  line-height: 24px;
+  font-weight: 500;
+  letter-spacing: normal;
+}
+
+.text-tailwind-text-base-font-semibold {
+  font-family: Inter, system-ui;
+  font-size: 16px;
+  line-height: 24px;
+  font-weight: 600;
+  letter-spacing: normal;
+}
+
+.text-tailwind-text-base-font-bold {
+  font-family: Inter, system-ui;
+  font-size: 16px;
+  line-height: 24px;
+  font-weight: 700;
+  letter-spacing: normal;
+}
+
+.text-tailwind-text-base-font-extrabold {
+  font-family: Inter, system-ui;
+  font-size: 16px;
+  line-height: 24px;
+  font-weight: 800;
+  letter-spacing: normal;
+}
+
+.text-tailwind-text-base-font-bold {
+  font-family: Inter, system-ui;
+  font-size: 16px;
+  line-height: 24px;
+  font-weight: 900;
+  letter-spacing: normal;
+}
+
+.text-tailwind-text-lg-font-thin {
+  font-family: Inter, system-ui;
+  font-size: 18px;
+  line-height: 28px;
+  font-weight: 100;
+  letter-spacing: normal;
+}
+
+.text-tailwind-text-lg-font-extralight {
+  font-family: Inter, system-ui;
+  font-size: 18px;
+  line-height: 28px;
+  font-weight: 200;
+  letter-spacing: normal;
+}
+
+.text-tailwind-text-lg-font-light {
+  font-family: Inter, system-ui;
+  font-size: 18px;
+  line-height: 28px;
+  font-weight: 300;
+  letter-spacing: normal;
+}
+
+.text-tailwind-text-lg-font-normal {
+  font-family: Inter, system-ui;
+  font-size: 18px;
+  line-height: 28px;
+  font-weight: 400;
+  letter-spacing: normal;
+}
+
+.text-tailwind-text-lg-font-medium {
+  font-family: Inter, system-ui;
+  font-size: 18px;
+  line-height: 28px;
+  font-weight: 500;
+  letter-spacing: normal;
+}
+
+.text-tailwind-text-lg-font-semibold {
+  font-family: Inter, system-ui;
+  font-size: 18px;
+  line-height: 28px;
+  font-weight: 600;
+  letter-spacing: normal;
+}
+
+.text-tailwind-text-lg-font-bold {
+  font-family: Inter, system-ui;
+  font-size: 18px;
+  line-height: 28px;
+  font-weight: 700;
+  letter-spacing: normal;
+}
+
+.text-tailwind-text-lg-font-extrabold {
+  font-family: Inter, system-ui;
+  font-size: 18px;
+  line-height: 28px;
+  font-weight: 800;
+  letter-spacing: normal;
+}
+
+.text-tailwind-text-lg-font-black {
+  font-family: Inter, system-ui;
+  font-size: 18px;
+  line-height: 28px;
+  font-weight: 900;
+  letter-spacing: normal;
+}
+
+.text-tailwind-text-xl-font-thin {
+  font-family: Inter, system-ui;
+  font-size: 20px;
+  line-height: 28px;
+  font-weight: 100;
+  letter-spacing: normal;
+}
+
+.text-tailwind-text-xl-font-extralight {
+  font-family: Inter, system-ui;
+  font-size: 20px;
+  line-height: 28px;
+  font-weight: 200;
+  letter-spacing: normal;
+}
+
+.text-tailwind-text-xl-font-light {
+  font-family: Inter, system-ui;
+  font-size: 20px;
+  line-height: 28px;
+  font-weight: 300;
+  letter-spacing: normal;
+}
+
+.text-tailwind-text-xl-font-normal {
+  font-family: Inter, system-ui;
+  font-size: 20px;
+  line-height: 28px;
+  font-weight: 400;
+  letter-spacing: normal;
+}
+
+.text-tailwind-text-xl-font-medium {
+  font-family: Inter, system-ui;
+  font-size: 20px;
+  line-height: 28px;
+  font-weight: 500;
+  letter-spacing: normal;
+}
+
+.text-tailwind-text-xl-font-semibold {
+  font-family: Inter, system-ui;
+  font-size: 20px;
+  line-height: 28px;
+  font-weight: 600;
+  letter-spacing: normal;
+}
+
+.text-tailwind-text-xl-font-bold {
+  font-family: Inter, system-ui;
+  font-size: 20px;
+  line-height: 28px;
+  font-weight: 700;
+  letter-spacing: normal;
+}
+
+.text-tailwind-text-xl-font-extrabold {
+  font-family: Inter, system-ui;
+  font-size: 20px;
+  line-height: 28px;
+  font-weight: 800;
+  letter-spacing: normal;
+}
+
+.text-tailwind-text-xl-font-black {
+  font-family: Inter, system-ui;
+  font-size: 20px;
+  line-height: 28px;
+  font-weight: 900;
+  letter-spacing: normal;
+}
+
+.text-tailwind-text-2xl-font-thin {
+  font-family: Inter, system-ui;
+  font-size: 24px;
+  line-height: 32px;
+  font-weight: 100;
+  letter-spacing: normal;
+}
+
+.text-tailwind-text-2xl-font-extralight {
+  font-family: Inter, system-ui;
+  font-size: 24px;
+  line-height: 32px;
+  font-weight: 200;
+  letter-spacing: normal;
+}
+
+.text-tailwind-text-2xl-font-light {
+  font-family: Inter, system-ui;
+  font-size: 24px;
+  line-height: 32px;
+  font-weight: 300;
+  letter-spacing: normal;
+}
+
+.text-tailwind-text-2xl-font-normal {
+  font-family: Inter, system-ui;
+  font-size: 24px;
+  line-height: 32px;
+  font-weight: 400;
+  letter-spacing: normal;
+}
+
+.text-tailwind-text-2xl-font-medium {
+  font-family: Inter, system-ui;
+  font-size: 24px;
+  line-height: 32px;
+  font-weight: 500;
+  letter-spacing: normal;
+}
+
+.text-tailwind-text-2xl-font-semibold {
+  font-family: Inter, system-ui;
+  font-size: 24px;
+  line-height: 32px;
+  font-weight: 600;
+  letter-spacing: normal;
+}
+
+.text-tailwind-text-2xl-font-bold {
+  font-family: Inter, system-ui;
+  font-size: 24px;
+  line-height: 32px;
+  font-weight: 700;
+  letter-spacing: normal;
+}
+
+.text-tailwind-text-2xl-font-extrabold {
+  font-family: Inter, system-ui;
+  font-size: 24px;
+  line-height: 32px;
+  font-weight: 800;
+  letter-spacing: normal;
+}
+
+.text-tailwind-text-2xl-font-black {
+  font-family: Inter, system-ui;
+  font-size: 24px;
+  line-height: 32px;
+  font-weight: 900;
+  letter-spacing: normal;
+}
+
+.text-tailwind-text-3xl-font-thin {
+  font-family: Inter, system-ui;
+  font-size: 30px;
+  line-height: 36px;
+  font-weight: 100;
+  letter-spacing: normal;
+}
+
+.text-tailwind-text-3xl-font-extralight {
+  font-family: Inter, system-ui;
+  font-size: 30px;
+  line-height: 36px;
+  font-weight: 200;
+  letter-spacing: normal;
+}
+
+.text-tailwind-text-3xl-font-light {
+  font-family: Inter, system-ui;
+  font-size: 30px;
+  line-height: 36px;
+  font-weight: 300;
+  letter-spacing: normal;
+}
+
+.text-tailwind-text-3xl-font-medium {
+  font-family: Inter, system-ui;
+  font-size: 30px;
+  line-height: 36px;
+  font-weight: 500;
+  letter-spacing: normal;
+}
+
+.text-tailwind-text-3xl-font-normal {
+  font-family: Inter, system-ui;
+  font-size: 30px;
+  line-height: 36px;
+  font-weight: 400;
+  letter-spacing: normal;
+}
+
+.text-tailwind-text-3xl-font-semibold {
+  font-family: Inter, system-ui;
+  font-size: 30px;
+  line-height: 36px;
+  font-weight: 600;
+  letter-spacing: normal;
+}
+
+.text-tailwind-text-3xl-font-bold {
+  font-family: Inter, system-ui;
+  font-size: 30px;
+  line-height: 36px;
+  font-weight: 700;
+  letter-spacing: normal;
+}
+
+.text-tailwind-text-3xl-font-extrabold {
+  font-family: Inter, system-ui;
+  font-size: 30px;
+  line-height: 36px;
+  font-weight: 800;
+  letter-spacing: normal;
+}
+
+.text-tailwind-text-3xl-font-black {
+  font-family: Inter, system-ui;
+  font-size: 30px;
+  line-height: 36px;
+  font-weight: 900;
+  letter-spacing: normal;
+}
+
+.text-tailwind-text-4xl-font-thin {
+  font-family: Inter, system-ui;
+  font-size: 36px;
+  line-height: 40px;
+  font-weight: 100;
+  letter-spacing: normal;
+}
+
+.text-tailwind-text-4xl-font-extralight {
+  font-family: Inter, system-ui;
+  font-size: 36px;
+  line-height: 40px;
+  font-weight: 200;
+  letter-spacing: normal;
+}
+
+.text-tailwind-text-4xl-font-light {
+  font-family: Inter, system-ui;
+  font-size: 36px;
+  line-height: 40px;
+  font-weight: 300;
+  letter-spacing: normal;
+}
+
+.text-tailwind-text-4xl-font-normal {
+  font-family: Inter, system-ui;
+  font-size: 36px;
+  line-height: 40px;
+  font-weight: 400;
+  letter-spacing: normal;
+}
+
+.text-tailwind-text-4xl-font-medium {
+  font-family: Inter, system-ui;
+  font-size: 36px;
+  line-height: 40px;
+  font-weight: 500;
+  letter-spacing: normal;
+}
+
+.text-tailwind-text-4xl-font-semibold {
+  font-family: Inter, system-ui;
+  font-size: 36px;
+  line-height: 40px;
+  font-weight: 600;
+  letter-spacing: normal;
+}
+
+.text-tailwind-text-4xl-font-bold {
+  font-family: Inter, system-ui;
+  font-size: 36px;
+  line-height: 40px;
+  font-weight: 700;
+  letter-spacing: normal;
+}
+
+.text-tailwind-text-4xl-font-extrabold {
+  font-family: Inter, system-ui;
+  font-size: 36px;
+  line-height: 40px;
+  font-weight: 800;
+  letter-spacing: normal;
+}
+
+.text-tailwind-text-4xl-font-black {
+  font-family: Inter, system-ui;
+  font-size: 36px;
+  line-height: 40px;
+  font-weight: 900;
+  letter-spacing: normal;
+}
+
+.text-tailwind-text-5xl-font-thin {
+  font-family: Inter, system-ui;
+  font-size: 48px;
+  line-height: 1;
+  font-weight: 100;
+  letter-spacing: normal;
+}
+
+.text-tailwind-text-5xl-font-extralight {
+  font-family: Inter, system-ui;
+  font-size: 48px;
+  line-height: 1;
+  font-weight: 200;
+  letter-spacing: normal;
+}
+
+.text-tailwind-text-5xl-font-light {
+  font-family: Inter, system-ui;
+  font-size: 48px;
+  line-height: 1;
+  font-weight: 300;
+  letter-spacing: normal;
+}
+
+.text-tailwind-text-5xl-font-normal {
+  font-family: Inter, system-ui;
+  font-size: 48px;
+  line-height: 1;
+  font-weight: 400;
+  letter-spacing: normal;
+}
+
+.text-tailwind-text-5xl-font-medium {
+  font-family: Inter, system-ui;
+  font-size: 48px;
+  line-height: 1;
+  font-weight: 500;
+  letter-spacing: normal;
+}
+
+.text-tailwind-text-5xl-font-semibold {
+  font-family: Inter, system-ui;
+  font-size: 48px;
+  line-height: 1;
+  font-weight: 600;
+  letter-spacing: normal;
+}
+
+.text-tailwind-text-5xl-font-bold {
+  font-family: Inter, system-ui;
+  font-size: 48px;
+  line-height: 1;
+  font-weight: 700;
+  letter-spacing: normal;
+}
+
+.text-tailwind-text-5xl-font-extrabold {
+  font-family: Inter, system-ui;
+  font-size: 48px;
+  line-height: 1;
+  font-weight: 800;
+  letter-spacing: normal;
+}
+
+.text-tailwind-text-5xl-font-black {
+  font-family: Inter, system-ui;
+  font-size: 48px;
+  line-height: 1;
+  font-weight: 900;
+  letter-spacing: normal;
+}
+
+.text-tailwind-text-6xl-font-thin {
+  font-family: Inter, system-ui;
+  font-size: 60px;
+  line-height: 1;
+  font-weight: 100;
+  letter-spacing: normal;
+}
+
+.text-tailwind-text-6xl-font-extralight {
+  font-family: Inter, system-ui;
+  font-size: 60px;
+  line-height: 1;
+  font-weight: 200;
+  letter-spacing: normal;
+}
+
+.text-tailwind-text-6xl-font-light {
+  font-family: Inter, system-ui;
+  font-size: 60px;
+  line-height: 1;
+  font-weight: 300;
+  letter-spacing: normal;
+}
+
+.text-tailwind-text-6xl-font-normal {
+  font-family: Inter, system-ui;
+  font-size: 60px;
+  line-height: 1;
+  font-weight: 400;
+  letter-spacing: normal;
+}
+
+.text-tailwind-text-6xl-font-medium {
+  font-family: Inter, system-ui;
+  font-size: 60px;
+  line-height: 1;
+  font-weight: 500;
+  letter-spacing: normal;
+}
+
+.text-tailwind-text-6xl-font-semibold {
+  font-family: Inter, system-ui;
+  font-size: 60px;
+  line-height: 1;
+  font-weight: 600;
+  letter-spacing: normal;
+}
+
+.text-tailwind-text-6xl-font-bold {
+  font-family: Inter, system-ui;
+  font-size: 60px;
+  line-height: 1;
+  font-weight: 700;
+  letter-spacing: normal;
+}
+
+.text-tailwind-text-6xl-font-extrabold {
+  font-family: Inter, system-ui;
+  font-size: 60px;
+  line-height: 1;
+  font-weight: 800;
+  letter-spacing: normal;
+}
+
+.text-tailwind-text-6xl-font-black {
+  font-family: Inter, system-ui;
+  font-size: 60px;
+  line-height: 1;
+  font-weight: 900;
+  letter-spacing: normal;
+}
+
+.text-tailwind-text-7xl-font-thin {
+  font-family: Inter, system-ui;
+  font-size: 72px;
+  line-height: 1;
+  font-weight: 100;
+  letter-spacing: normal;
+}
+
+.text-tailwind-text-7xl-font-extralight {
+  font-family: Inter, system-ui;
+  font-size: 72px;
+  line-height: 1;
+  font-weight: 200;
+  letter-spacing: normal;
+}
+
+.text-tailwind-text-7xl-font-light {
+  font-family: Inter, system-ui;
+  font-size: 72px;
+  line-height: 1;
+  font-weight: 300;
+  letter-spacing: normal;
+}
+
+.text-tailwind-text-7xl-font-normal {
+  font-family: Inter, system-ui;
+  font-size: 72px;
+  line-height: 1;
+  font-weight: 400;
+  letter-spacing: normal;
+}
+
+.text-tailwind-text-7xl-font-medium {
+  font-family: Inter, system-ui;
+  font-size: 72px;
+  line-height: 1;
+  font-weight: 500;
+  letter-spacing: normal;
+}
+
+.text-tailwind-text-7xl-font-semibold {
+  font-family: Inter, system-ui;
+  font-size: 72px;
+  line-height: 1;
+  font-weight: 600;
+  letter-spacing: normal;
+}
+
+.text-tailwind-text-7xl-font-bold {
+  font-family: Inter, system-ui;
+  font-size: 72px;
+  line-height: 1;
+  font-weight: 700;
+  letter-spacing: normal;
+}
+
+.text-tailwind-text-7xl-font-extrabold {
+  font-family: Inter, system-ui;
+  font-size: 72px;
+  line-height: 1;
+  font-weight: 800;
+  letter-spacing: normal;
+}
+
+.text-tailwind-text-7xl-font-black {
+  font-family: Inter, system-ui;
+  font-size: 72px;
+  line-height: 1;
+  font-weight: 900;
+  letter-spacing: normal;
+}
+
+.text-tailwind-text-8xl-font-thin {
+  font-family: Inter, system-ui;
+  font-size: 96px;
+  line-height: 1;
+  font-weight: 100;
+  letter-spacing: normal;
+}
+
+.text-tailwind-text-8xl-font-extralight {
+  font-family: Inter, system-ui;
+  font-size: 96px;
+  line-height: 1;
+  font-weight: 200;
+  letter-spacing: normal;
+}
+
+.text-tailwind-text-8xl-font-light {
+  font-family: Inter, system-ui;
+  font-size: 96px;
+  line-height: 1;
+  font-weight: 300;
+  letter-spacing: normal;
+}
+
+.text-tailwind-text-8xl-font-normal {
+  font-family: Inter, system-ui;
+  font-size: 96px;
+  line-height: 1;
+  font-weight: 400;
+  letter-spacing: normal;
+}
+
+.text-tailwind-text-8xl-font-medium {
+  font-family: Inter, system-ui;
+  font-size: 96px;
+  line-height: 1;
+  font-weight: 500;
+  letter-spacing: normal;
+}
+
+.text-tailwind-text-8xl-font-semibold {
+  font-family: Inter, system-ui;
+  font-size: 96px;
+  line-height: 1;
+  font-weight: 600;
+  letter-spacing: normal;
+}
+
+.text-tailwind-text-8xl-font-bold {
+  font-family: Inter, system-ui;
+  font-size: 96px;
+  line-height: 1;
+  font-weight: 700;
+  letter-spacing: normal;
+}
+
+.text-tailwind-text-8xl-font-extrabold {
+  font-family: Inter, system-ui;
+  font-size: 96px;
+  line-height: 1;
+  font-weight: 800;
+  letter-spacing: normal;
+}
+
+.text-tailwind-text-8xl-font-black {
+  font-family: Inter, system-ui;
+  font-size: 96px;
+  line-height: 1;
+  font-weight: 900;
+  letter-spacing: normal;
+}
+
+.text-tailwind-text-9xl-font-thin {
+  font-family: Inter, system-ui;
+  font-size: 128px;
+  line-height: 1;
+  font-weight: 100;
+  letter-spacing: normal;
+}
+
+.text-tailwind-text-9xl-font-extra-light {
+  font-family: Inter, system-ui;
+  font-size: 128px;
+  line-height: 1;
+  font-weight: 200;
+  letter-spacing: normal;
+}
+
+.text-tailwind-text-9xl-font-light {
+  font-family: Inter, system-ui;
+  font-size: 128px;
+  line-height: 1;
+  font-weight: 300;
+  letter-spacing: normal;
+}
+
+.text-tailwind-text-9xl-font-normal {
+  font-family: Inter, system-ui;
+  font-size: 128px;
+  line-height: 1;
+  font-weight: 400;
+  letter-spacing: normal;
+}
+
+.text-tailwind-text-9xl-font-medium {
+  font-family: Inter, system-ui;
+  font-size: 128px;
+  line-height: 1;
+  font-weight: 500;
+  letter-spacing: normal;
+}
+
+.text-tailwind-text-9xl-font-semibold {
+  font-family: Inter, system-ui;
+  font-size: 128px;
+  line-height: 1;
+  font-weight: 600;
+  letter-spacing: normal;
+}
+
+.text-tailwind-text-9xl-font-bold {
+  font-family: Inter, system-ui;
+  font-size: 128px;
+  line-height: 1;
+  font-weight: 700;
+  letter-spacing: normal;
+}
+
+.text-tailwind-text-9xl-font-extrabold {
+  font-family: Inter, system-ui;
+  font-size: 128px;
+  line-height: 1;
+  font-weight: 800;
+  letter-spacing: normal;
+}
+
+.text-tailwind-text-9xl-font-black {
+  font-family: Inter, system-ui;
+  font-size: 128px;
+  line-height: 1;
+  font-weight: 900;
+  letter-spacing: normal;
+}
+
+/* Base element defaults */
+
+body {
+  font-family: var(--font-family);
+  font-size: 16px;
+  line-height: 1.5;
+  font-weight: var(--font-regular);
+}
+
+h1 {
+  font-family: var(--font-family);
+  font-size: 36px;
+  line-height: 1.12;
+  font-weight: var(--font-extra-bold);
+  letter-spacing: normal;
+  text-wrap: balance;
+}
+
+h2 {
+  font-family: var(--font-family);
+  font-size: 24px;
+  line-height: 1.34;
+  font-weight: var(--font-bold);
+  letter-spacing: normal;
+  text-wrap: balance;
+}
+
+h3 {
+  font-family: var(--font-family);
+  font-size: 20px;
+  line-height: 1.6;
+  font-weight: var(--font-semi-bold);
+  letter-spacing: normal;
+  text-wrap: balance;
+}
+
+h4 {
+  font-family: var(--font-family);
+  font-size: 16px;
+  line-height: 1.5;
+  font-weight: var(--font-semi-bold);
+  letter-spacing: normal;
+  text-wrap: balance;
+}

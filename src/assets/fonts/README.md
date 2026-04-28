@@ -19,4 +19,4 @@ Example:
 ```
 
 Then reference `font-family: 'Inter', sans-serif` via a typography token in
-`src/foundations/tokens/source/typography.tokens.json`.
+`src/tokens/source/typography.tokens.json`.

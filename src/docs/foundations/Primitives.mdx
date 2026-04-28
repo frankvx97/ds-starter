@@ -1,0 +1,18 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+import tokens from './_generated/tokens.json';
+import { PrimitivesGrouped } from './_components/TokenTable';
+
+<Meta title="Foundations/Primitives" />
+
+# Primitives
+
+> **Aliasing-only.** Primitives (`--palette-*`) are raw color values whose only
+> purpose is to feed semantic tokens in `theme-light.css` and `theme-dark.css`.
+> **Do not reference `--palette-*` directly from component CSS, stories, or
+> anywhere else outside `theme-*.css` / `docs-*.css`.** This is enforced by
+> stylelint (`pnpm lint:css`). If no semantic token fits a need, propose a new
+> semantic token aliasing a primitive — never reach into the primitive directly.
+
+Source: `src/tokens/raw/primitives.css`
+
+<PrimitivesGrouped vars={tokens.primitives} />

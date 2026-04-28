@@ -1,0 +1,10 @@
+:root {
+
+  /* docs */
+  --bg: var(--palette-zinc-50);
+  --foreground: var(--palette-eclipse);
+  --foreground-inverse: var(--palette-snow);
+  --muted: var(--palette-zinc-600);
+  --radius: 64px;
+
+}

@@ -1,0 +1,26 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+import tokens from './_generated/tokens.json';
+import { TokenTable } from './_components/TokenTable';
+
+<Meta title="Foundations/Typography/Font" />
+
+# Typography — Font
+
+Font family and weight tokens. Source: `src/tokens/raw/typography.css`.
+
+<TokenTable vars={tokens.typography.font} preview="none" />
+
+## Weights preview
+
+<div style={{ display: 'grid', gap: 8, marginBlock: 16, fontFamily: 'var(--font-family)' }}>
+  {tokens.typography.font
+    .filter((v) => v.name !== '--font-family')
+    .map((v) => (
+      <div key={v.name} style={{ fontWeight: `var(${v.name})`, fontSize: 24 }}>
+        <span style={{ fontFamily: 'monospace', fontSize: 12, opacity: 0.7, marginRight: 12 }}>
+          {v.name} ({v.value})
+        </span>
+        The quick brown fox jumps over the lazy dog
+      </div>
+    ))}
+</div>

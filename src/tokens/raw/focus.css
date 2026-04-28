@@ -1,0 +1,7 @@
+:root {
+
+  /* focus */
+  --focus-ring: 0px 0px 0px var(--ring-offset-width) var(--background-default), 0px 0px 0px var(--ring-focus-width) var(--focus-ring-color);
+  --focus-ring-field: 0px 0px 0px var(--ring-offset-width) var(--focus-ring-color);
+
+}

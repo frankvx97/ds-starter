@@ -18,11 +18,13 @@
       "import": "./dist/index.js"
     },
     "./styles/tokens.css": "./src/styles/tokens.css",
+    "./styles/typography.css": "./src/styles/typography.css",
     "./styles/global.css": "./src/styles/global.css"
   },
   "files": [
     "dist",
     "src/styles/tokens.css",
+    "src/styles/typography.css",
     "src/styles/global.css"
   ],
   "sideEffects": [
@@ -33,14 +35,22 @@
     "access": "restricted"
   },
   "scripts": {
-    "dev": "pnpm tokens:build && storybook dev -p 6006",
-    "tokens:build": "style-dictionary build --config style-dictionary.config.mjs",
-    "tokens:watch": "style-dictionary build --config style-dictionary.config.mjs --watch",
+    "dev": "pnpm tokens:sync && storybook dev -p 6060",
+    "tokens:build": "node scripts/build-tokens.mjs",
+    "tokens:watch": "node --watch-path=src/tokens/source scripts/build-tokens.mjs",
+    "tokens:stories": "node scripts/build-token-stories.mjs",
+    "tokens:stories:watch": "node scripts/build-token-stories.mjs --watch",
+    "tokens:extract": "node scripts/figma-extract.mjs",
+    "tokens:switch": "node scripts/switch-token-pipeline.mjs",
+    "tokens:sync": "node scripts/wrap-theme.mjs && node scripts/build-token-stories.mjs",
+    "tokens:sync:watch": "node scripts/wrap-theme.mjs --watch & node scripts/build-token-stories.mjs --watch",
+    "theme:wrap": "node scripts/wrap-theme.mjs",
     "build": "pnpm tokens:build && vite build",
-    "build:storybook": "storybook build",
+    "build:storybook": "pnpm tokens:sync && storybook build",
     "typecheck": "tsc --noEmit",
-    "lint": "eslint .",
-    "lint:fix": "eslint . --fix",
+    "lint": "eslint . && pnpm lint:css",
+    "lint:fix": "eslint . --fix && pnpm lint:css --fix",
+    "lint:css": "stylelint \"src/**/*.css\"",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
     "test": "vitest run --passWithNoTests",
@@ -57,6 +67,7 @@
     "@changesets/cli": "^2.31.0",
     "@eslint/js": "^10.0.1",
     "@storybook/addon-a11y": "^10.3.5",
+    "@storybook/addon-docs": "^10.3.5",
     "@storybook/react-vite": "^10.3.5",
     "@testing-library/jest-dom": "^6.9.1",
     "@testing-library/react": "^16.3.2",
@@ -75,10 +86,15 @@
     "react-dom": "^19.2.5",
     "storybook": "^10.3.5",
     "style-dictionary": "^5.4.0",
+    "stylelint": "^17.9.1",
+    "stylelint-config-standard": "^40.0.0",
     "typescript": "^6.0.3",
     "typescript-eslint": "^8.58.2",
     "vite": "^8.0.9",
     "vite-plugin-dts": "^4.5.4",
     "vitest": "^4.1.4"
+  },
+  "dependencies": {
+    "@gravity-ui/icons": "^2.18.0"
   }
 }
