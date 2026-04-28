@@ -1,0 +1,15 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+import tokens from './_generated/tokens.json';
+import { FocusGrid, TokenTable } from './_components/TokenTable';
+
+<Meta title="Foundations/Focus" />
+
+# Focus Rings
+
+Focus rings define how focus and keyboard navigation are communicated visually. They provide a
+consistent visual indicator for interactive elements when focused, improving accessibility and
+usability across the system.
+
+<FocusGrid vars={tokens.focus} />
+
+<TokenTable vars={tokens.focus} preview="none" />

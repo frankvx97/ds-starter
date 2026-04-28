@@ -22,7 +22,7 @@ A **starter design system scaffold** for designers learning to translate Figma i
 pnpm install
 
 # 3. Build tokens and launch Storybook
-pnpm dev           # http://localhost:6006
+pnpm dev           # http://localhost:6060
 ```
 
 ## Repo layout
@@ -33,13 +33,9 @@ ds-starter/
 ├── .github/workflows/              # CI + release + publish
 ├── .storybook/                     # Storybook config
 └── src/
-    ├── foundations/
-    │   ├── tokens/
-    │   │   ├── source/             # 📥 JSON token drop zone (Figma MCP, Tokens Studio, DTCG)
-    │   │   └── raw/                # 📥 CSS/SCSS drop zone (Tokens SOT plugin)
-    │   ├── color/                  # color-specific helpers
-    │   ├── typography/
-    │   └── spacing/
+    ├── tokens/
+    │   ├── source/                 # 📥 JSON token drop zone (Figma MCP, Tokens Studio, DTCG)
+    │   └── raw/                    # 📥 CSS/SCSS drop zone (Tokens SOT plugin)
     ├── components/
     │   ├── atoms/                  # Button, Input, Icon…
     │   ├── molecules/              # SearchField, FormField…
@@ -59,23 +55,70 @@ ds-starter/
 
 ## Adding design tokens
 
-Three supported pipelines, all landing in `src/styles/tokens.css` / `tokens.ts`:
+Two **mutually exclusive** token pipelines are supported. Pick one — using both at the same time leads to conflicting CSS variables and confusing cascade order. The repo ships with **Tokens SOT** active by default; switch with `pnpm tokens:switch sd` if you'd rather use Style Dictionary.
 
-| From Figma                       | Drop location                    | Built by         |
-| -------------------------------- | -------------------------------- | ---------------- |
-| **Figma MCP** → JSON             | `src/foundations/tokens/source/` | Style Dictionary |
-| **Tokens Studio** plugin → JSON  | `src/foundations/tokens/source/` | Style Dictionary |
-| **Tokens SOT** plugin → CSS/SCSS | `src/foundations/tokens/raw/`    | imported as-is   |
+| From Figma                                             | Drop location        | Built by         | Mode  |
+| ------------------------------------------------------ | -------------------- | ---------------- | ----- |
+| **Figma REST API / MCP / Tokens Studio plugin** → JSON | `src/tokens/source/` | Style Dictionary | `sd`  |
+| **Tokens SOT** plugin → CSS/SCSS                       | `src/tokens/raw/`    | imported as-is   | `sot` |
 
-Then run:
+### Style Dictionary mode (`sd`)
+
+Drop DTCG / Tokens Studio JSON into `src/tokens/source/`, then:
 
 ```bash
 pnpm tokens:build    # one-shot
 pnpm tokens:watch    # re-build on change
 ```
 
-The seed file `src/foundations/tokens/source/core.tokens.json` shows the DTCG
-format. Replace or extend it with your real tokens.
+Outputs are written to `src/styles/tokens.css` + `src/styles/tokens.ts` + `src/styles/typography.css` and imported by `global.css`. The seed file `src/tokens/source/core.tokens.json` shows the DTCG format.
+
+### Tokens SOT mode (`sot`)
+
+Drop the CSS files exported by the Tokens SOT Figma plugin into `src/tokens/raw/`, then update the `@import` list in [`src/styles/global.css`](src/styles/global.css) to match the filenames you exported.
+
+Run `pnpm tokens:sync` after every re-export. It does two things:
+
+1. **`scripts/wrap-theme.mjs`** rewrites `theme-light.css` / `theme-dark.css` from `src/tokens/raw/` into `src/styles/generated/` so they apply via `[data-theme="…"]` (with `prefers-color-scheme` as fallback) instead of unconditionally hitting `:root`. Without this step the dark file would always win the cascade.
+2. **`scripts/build-token-stories.mjs`** introspects the raw files to regenerate the token-reference Storybook MDX under `src/docs/foundations/`.
+
+### Switching token pipeline
+
+```bash
+pnpm tokens:switch sd     # activate Style Dictionary
+pnpm tokens:switch sot    # activate Tokens SOT
+```
+
+The script:
+
+1. Toggles which `@import` block is active inside [`src/styles/global.css`](src/styles/global.css) (the inactive branch is left commented, not deleted).
+2. Moves the **unused** pipeline's files (`src/tokens/source/` or `src/tokens/raw/` and any generated CSS/TS) into `.token-pipeline-backup/<mode>/` so nothing is destroyed.
+3. Restores files from `.token-pipeline-backup/<mode>/` if you switch back.
+
+Once you're confident you won't need the other pipeline, delete `.token-pipeline-backup/` to clean up.
+
+### Extract tokens from a Figma file
+
+`pnpm tokens:extract` runs an interactive CLI that pulls Variables and Styles
+from any Figma file via the REST API and writes a single DTCG JSON file with
+aliases preserved and modes encoded under `$extensions.modes`.
+
+```bash
+pnpm tokens:extract
+```
+
+You'll be prompted for:
+
+1. A **Figma personal access token** — generate at
+   <https://www.figma.com/settings> with scopes **File content (Read)** and
+   **Variables (Read)**. Set it as `FIGMA_TOKEN` in your environment or accept
+   the offer to save it to `.env.local` (gitignored).
+2. A **Figma file URL or key**.
+3. The **collections / style groups** you want to export (multi-select).
+4. The **output path** (defaults to `src/tokens/source/figma.tokens.json`).
+
+> **Note:** the Variables endpoint requires a **Figma Enterprise** plan. On
+> Free / Pro plans the script falls back to extracting Local Styles only.
 
 ## Adding a component
 
@@ -92,19 +135,24 @@ Then re-export from `src/index.ts` so it's part of the public API.
 
 ## Scripts
 
-| Command                | What it does                                                  |
-| ---------------------- | ------------------------------------------------------------- |
-| `pnpm dev`             | Build tokens, run Storybook at `:6006`.                       |
-| `pnpm tokens:build`    | Compile DTCG JSON → `tokens.css` + `tokens.ts`.               |
-| `pnpm tokens:watch`    | Watch mode for token authoring.                               |
-| `pnpm build`           | Build the library (ESM + types) into `dist/`.                 |
-| `pnpm build:storybook` | Static Storybook into `storybook-static/`.                    |
-| `pnpm typecheck`       | `tsc --noEmit`.                                               |
-| `pnpm lint`            | ESLint.                                                       |
-| `pnpm format`          | Prettier write.                                               |
-| `pnpm test`            | Vitest (jsdom).                                               |
-| `pnpm changeset`       | Record a version bump for your PR.                            |
-| `pnpm release`         | Build + publish to GitHub Packages (used by CI, not locally). |
+| Command                | What it does                                                                     |
+| ---------------------- | -------------------------------------------------------------------------------- |
+| `pnpm dev`             | `tokens:sync` + Storybook at `:6060`.                                            |
+| `pnpm tokens:build`    | Compile DTCG JSON → `tokens.css` + `tokens.ts` + `typography.css` (`sd` mode).   |
+| `pnpm tokens:watch`    | Watch `src/tokens/source/` and rebuild (`sd` mode).                              |
+| `pnpm tokens:sync`     | `wrap-theme.mjs` + `build-token-stories.mjs` (`sot` mode — run after re-export). |
+| `pnpm tokens:stories`  | Regenerate the token-reference MDX under `src/docs/foundations/`.                |
+| `pnpm tokens:extract`  | Pull tokens from a Figma file via the REST API → DTCG JSON.                      |
+| `pnpm tokens:switch`   | Toggle between `sd` and `sot` pipelines.                                         |
+| `pnpm build`           | Build the library (ESM + types) into `dist/`.                                    |
+| `pnpm build:storybook` | Static Storybook into `storybook-static/`.                                       |
+| `pnpm typecheck`       | `tsc --noEmit`.                                                                  |
+| `pnpm lint`            | ESLint + Stylelint (enforces semantic-token-only CSS).                           |
+| `pnpm lint:css`        | Stylelint only — blocks `var(--palette-*)` in components.                        |
+| `pnpm format`          | Prettier write.                                                                  |
+| `pnpm test`            | Vitest (jsdom).                                                                  |
+| `pnpm changeset`       | Record a version bump for your PR.                                               |
+| `pnpm release`         | Build + publish to GitHub Packages (used by CI, not locally).                    |
 
 ## Publishing to GitHub Packages
 
@@ -142,8 +190,19 @@ import '@YOUR-ORG/ds-starter/styles/global.css';
 // import { MyButton } from '@YOUR-ORG/ds-starter';
 ```
 
+## Token tiers (read this before writing component CSS)
+
+Tokens are **two-tiered**, and components must consume the public tier only:
+
+- **Primitives** (`--palette-*`) live in `src/tokens/raw/primitives.css`. Their **only** purpose is to feed semantic tokens inside `theme-light.css` / `theme-dark.css`. Do **not** reference `--palette-*` from component CSS.
+- **Semantic tokens** (`--color-*`, `--accent-*`, `--space-*`, `--radius-*`, …) are the public API. Components consume these.
+- If no semantic token fits, **propose a new semantic token** in both `theme-light.css` and `theme-dark.css` (aliasing a primitive) — don't reach into the primitive directly, or dark mode will silently break.
+
+This is enforced by `pnpm lint:css`. Reaching for `var(--palette-*)` outside the allowed files fails CI.
+
 ## Notes for the workshop
 
 - **No example stories ship.** Teammates will add their own under each component folder.
 - **Atomic design taxonomy.** `atoms → molecules → organisms` mirrors the Figma library structure.
 - **CSS Modules.** Styles are plain CSS scoped per-component. Consume tokens via `var(--…)` — never hard-coded values.
+- **Theming.** Toggle modes by setting `data-theme="light"` / `data-theme="dark"` on `<html>` (or any ancestor). With no attribute set, `prefers-color-scheme` decides.

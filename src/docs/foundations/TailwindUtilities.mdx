@@ -1,0 +1,58 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+import tokens from './_generated/tokens.json';
+import { TokenTable } from './_components/TokenTable';
+
+<Meta title="Foundations/Tailwind Utilities" />
+
+# Tailwind Utilities
+
+Tailwind-flavored escape-hatch tokens and utility classes. Prefer the semantic
+tokens above; reach for these only when a Tailwind-style ramp is needed.
+Source: `src/tokens/raw/tailwind.css`.
+
+## Tokens
+
+<TokenTable vars={tokens.tailwind.vars} preview="none" />
+
+## Utility classes
+
+<table style={{ width: '100%', borderCollapse: 'collapse', marginBlock: 16 }}>
+  <thead>
+    <tr>
+      <th style={{ textAlign: 'left', padding: '8px 12px', borderBottom: '1px solid #e2e8f0' }}>
+        Class
+      </th>
+      <th style={{ textAlign: 'left', padding: '8px 12px', borderBottom: '1px solid #e2e8f0' }}>
+        Declaration
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    {tokens.tailwind.utilities.map((u) => (
+      <tr key={u.selector}>
+        <td
+          style={{
+            padding: '8px 12px',
+            fontFamily: 'monospace',
+            fontSize: 13,
+            borderBottom: '1px solid #e2e8f0',
+          }}
+        >
+          {u.selector}
+        </td>
+        <td
+          style={{
+            padding: '8px 12px',
+            fontFamily: 'monospace',
+            fontSize: 13,
+            borderBottom: '1px solid #e2e8f0',
+          }}
+        >
+          {Object.entries(u.declarations)
+            .map(([k, v]) => `${k}: ${v}`)
+            .join('; ')}
+        </td>
+      </tr>
+    ))}
+  </tbody>
+</table>

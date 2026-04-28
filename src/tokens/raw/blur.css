@@ -1,0 +1,15 @@
+:root {
+  /* blur */
+  --blur-default: var(--blur);
+  --blur-backdrop: 12px;
+}
+
+/* Blur utilities */
+
+.blur-default {
+  backdrop-filter: blur(var(--blur-default));
+}
+
+.blur-backdrop {
+  backdrop-filter: blur(var(--blur-backdrop));
+}

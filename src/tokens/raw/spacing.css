@@ -1,0 +1,38 @@
+:root {
+  /* spacing */
+  --space-0: var(--dimensions-0);
+  --space-px: var(--dimensions-px);
+  --space-0-5: var(--dimensions-0․5);
+  --space-1: var(--dimensions-1);
+  --space-1-5: var(--dimensions-1․5);
+  --space-2: var(--dimensions-2);
+  --space-2-5: var(--dimensions-2․5);
+  --space-3: var(--dimensions-3);
+  --space-3-5: var(--dimensions-3․5);
+  --space-4: var(--dimensions-4);
+  --space-5: var(--dimensions-5);
+  --space-6: var(--dimensions-6);
+  --space-7: var(--dimensions-7);
+  --space-8: var(--dimensions-8);
+  --space-9: var(--dimensions-9);
+  --space-10: var(--dimensions-10);
+  --space-11: var(--dimensions-11);
+  --space-12: var(--dimensions-12);
+  --space-14: var(--dimensions-14);
+  --space-16: var(--dimensions-16);
+  --space-20: var(--dimensions-20);
+  --space-24: var(--dimensions-24);
+  --space-28: var(--dimensions-28);
+  --space-32: var(--dimensions-32);
+  --space-36: var(--dimensions-36);
+  --space-40: var(--dimensions-40);
+  --space-44: var(--dimensions-44);
+  --space-48: var(--dimensions-48);
+  --space-52: var(--dimensions-52);
+  --space-56: var(--dimensions-56);
+  --space-60: var(--dimensions-60);
+  --space-64: var(--dimensions-64);
+  --space-72: var(--dimensions-72);
+  --space-80: var(--dimensions-80);
+  --space-96: var(--dimensions-96);
+}

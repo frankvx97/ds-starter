@@ -1,0 +1,11 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+import tokens from './_generated/tokens.json';
+import { TokenTable } from './_components/TokenTable';
+
+<Meta title="Foundations/Breakpoints" />
+
+# Breakpoints
+
+Responsive breakpoint tokens. Source: `src/tokens/raw/breakpoints.css`.
+
+<TokenTable vars={tokens.breakpoints} preview="none" />

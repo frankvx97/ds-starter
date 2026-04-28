@@ -1,0 +1,15 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+import tokens from './_generated/tokens.json';
+import { TextStylePreview } from './_components/TokenTable';
+
+<Meta title="Foundations/Typography/Text Styles" />
+
+# Typography — Text Styles
+
+Composite text styles applied as utility classes. Source:
+`src/tokens/raw/text-styles.css`.
+
+Apply via `composes: text-<name> from global;` in a CSS module, or by adding the
+class name directly.
+
+<TextStylePreview classes={tokens.typography.textStyles} />

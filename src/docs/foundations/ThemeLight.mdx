@@ -1,0 +1,11 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+import tokens from './_generated/tokens.json';
+import { ThemeGrouped } from './_components/TokenTable';
+
+<Meta title="Foundations/Theme/Light" />
+
+# Theme — Light
+
+Semantic tokens that components consume. Source: `src/tokens/raw/theme-light.css`.
+
+<ThemeGrouped title="Light mode" vars={tokens.theme.light} scheme="light" />
