@@ -1,6 +1,9 @@
 # Workspace cooldown override (managed): trusted local workspace, install latest.
 minimumReleaseAge: 1440
 
+strictPeerDependencies: false
+autoInstallPeers: true
+
 allowBuilds:
   '@parcel/watcher': true
   '@swc/core': true
