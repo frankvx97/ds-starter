@@ -2,6 +2,13 @@
 
 A **starter design system scaffold** for designers learning to translate Figma into React components. It runs Storybook out of the box, consumes design tokens from multiple Figma pipelines, and publishes as a private npm package on GitHub Packages.
 
+## Figma File
+
+All credits to HeroUI. I duplicated their Figma Community file and adapted it to fit some of the concepts and best practices I wanted to illustrate for the workshop.
+
+- **Original File:** [HeroUI Figma Community file] (https://www.figma.com/community/file/1546526812159103429)
+- **My customized version:** [View Only File - Feel free to duplicate] (https://www.figma.com/design/r6dCl0A2fEWaCrxBEzfag5/HeroUI-Figma-Kit-V3--Edited-?node-id=5375-79876&t=6qgrs9GTyJ07wJ91-1)
+
 ## Tech stack
 
 - **TypeScript** — types over everything.

@@ -15,7 +15,7 @@
  * Zero dependencies — uses only Node built-ins.
  */
 
-import { readFile, writeFile, unlink, rm } from 'node:fs/promises';
+import { readFile, writeFile, unlink } from 'node:fs/promises';
 import { existsSync } from 'node:fs';
 import { createInterface } from 'node:readline/promises';
 import { stdin as input, stdout as output } from 'node:process';
@@ -25,7 +25,7 @@ import { dirname, join, resolve } from 'node:path';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
-const ROOT = resolve(__dirname);
+const ROOT = resolve(__dirname, '..');
 
 // ─── tiny terminal helpers ────────────────────────────────────────────────
 
@@ -163,18 +163,41 @@ function initGit() {
 // ─── self-cleanup ─────────────────────────────────────────────────────────
 
 async function selfDestruct() {
-  // Remove this script and the scripts/ directory if it's now empty.
   try {
     await unlink(__filename);
-    const scriptsDir = __dirname;
-    const { readdir } = await import('node:fs/promises');
-    const remaining = await readdir(scriptsDir);
-    if (remaining.length === 0) {
-      await rm(scriptsDir, { recursive: true, force: true });
-    }
     log.ok('Cleaned up init script');
   } catch {
     log.warn('Could not delete init script — remove scripts/init.mjs manually.');
+  }
+}
+
+// ─── token pipeline ───────────────────────────────────────────────────────
+
+async function choosePipeline(rl) {
+  log.blank();
+  log.info('Token pipeline — how do you want tokens to flow into CSS?');
+  log.info('  1) Tokens SOT     raw CSS exports from the Tokens SOT Figma plugin (default)');
+  log.info('  2) Style Dictionary   compile DTCG JSON in src/tokens/source/ → CSS');
+  while (true) {
+    const answer = (
+      await rl.question(`${c.bold}?${c.reset} Pick 1 or 2 ${c.dim}(1)${c.reset} `)
+    ).trim();
+    if (!answer || answer === '1' || /^sot$/i.test(answer)) return 'sot';
+    if (answer === '2' || /^sd$/i.test(answer)) return 'sd';
+    log.err('Enter 1 or 2.');
+  }
+}
+
+function applyPipeline(mode) {
+  try {
+    execSync(`node scripts/switch-token-pipeline.mjs ${mode}`, {
+      cwd: ROOT,
+      stdio: 'inherit',
+    });
+    log.ok(`Token pipeline set to ${mode === 'sd' ? 'Style Dictionary' : 'Tokens SOT'}`);
+  } catch (err) {
+    log.warn('Could not switch token pipeline automatically.');
+    log.info(err.message);
   }
 }
 
@@ -211,6 +234,8 @@ async function main() {
       default: 'My team’s design system.',
     });
 
+    const pipeline = await choosePipeline(rl);
+
     const githubUrl = `https://github.com/${scope}/${name}`;
 
     log.blank();
@@ -218,6 +243,7 @@ async function main() {
     log.info(`  package name:  @${scope}/${name}`);
     log.info(`  description:   ${description}`);
     log.info(`  repository:    ${githubUrl}`);
+    log.info(`  token pipeline: ${pipeline === 'sd' ? 'Style Dictionary' : 'Tokens SOT'}`);
     log.blank();
 
     const proceed = await confirm(rl, 'Apply these changes?', true);
@@ -233,6 +259,10 @@ async function main() {
     log.step('Updating files…');
     await updatePackageJson({ scope, name, description, githubUrl });
     await updateReadme({ scope, name, description });
+
+    log.blank();
+    log.step('Configuring token pipeline…');
+    applyPipeline(pipeline);
 
     log.blank();
     log.step('Setting up git…');

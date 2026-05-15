@@ -3,10 +3,10 @@
   --accent-default: var(--palette-sky-500);
   --accent-hover: var(--palette-sky-400);
   --accent-foreground: var(--palette-snow);
-  --accent-soft: #0ea5e926;
+  --accent-soft: #0ea5e91f;
   --accent-soft-hover: #0ea5e933;
-  --accent-soft-foreground: var(--palette-sky-500);
-  --default-default: var(--palette-neutral-200);
+  --accent-soft-foreground: var(--palette-sky-600);
+  --default-default: var(--palette-neutral-100);
   --default-hover: var(--palette-neutral-200);
   --default-foreground: var(--palette-eclipse);
   --success-default: var(--palette-green-500);
