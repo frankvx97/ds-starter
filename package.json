@@ -42,7 +42,7 @@
     "tokens:stories:watch": "node scripts/build-token-stories.mjs --watch",
     "tokens:extract": "node scripts/figma-extract.mjs",
     "tokens:switch": "node scripts/switch-token-pipeline.mjs",
-    "tokens:sync": "node scripts/wrap-theme.mjs && node scripts/build-token-stories.mjs",
+    "tokens:sync": "node scripts/wrap-theme.mjs && node scripts/build-token-stories.mjs && prettier --write --log-level=warn src/tokens/raw src/styles/generated",
     "tokens:sync:watch": "node scripts/wrap-theme.mjs --watch & node scripts/build-token-stories.mjs --watch",
     "theme:wrap": "node scripts/wrap-theme.mjs",
     "build": "pnpm tokens:sync && vite build",
