@@ -45,10 +45,29 @@ Why each option:
 ```typescript
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
+import postcssUrl from 'postcss-url';
 import { resolve } from 'path';
 
 export default defineConfig({
   plugins: [react()],
+  css: {
+    postcss: {
+      plugins: [
+        // Rewrite absolute url(/icons/...) refs in source CSS to relative
+        // ./assets/<name>-<hash>.<ext> paths and copy the files into dist/assets/.
+        // Without this, anything in component CSS that points at /icons, /images,
+        // /fonts, etc. will 404 in consumer apps. See pitfalls.md #1.
+        postcssUrl({
+          url: 'copy',
+          basePath: resolve(__dirname, 'src/assets'),
+          assetsPath: 'assets',
+          useHash: true,
+          // Only rewrite top-level folders the design system actually uses.
+          filter: (asset) => /^\/(icons|images|illustrations|fonts)\//.test(asset.url),
+        }),
+      ],
+    },
+  },
   build: {
     lib: {
       entry: resolve(__dirname, 'src/index.ts'),
@@ -65,7 +84,10 @@ export default defineConfig({
       ],
       output: {
         globals: { react: 'React', 'react-dom': 'ReactDOM' },
-        assetFileNames: 'index.[ext]',
+        assetFileNames: (info) =>
+          info.name?.endsWith('.css')
+            ? 'index.css'
+            : 'assets/[name]-[hash][extname]',
       },
     },
     sourcemap: true,
@@ -97,12 +119,26 @@ build/
 ```json
 {
   "scripts": {
-    "build:lib": "vite build --config vite.config.lib.ts && tsc --project tsconfig.build.json",
+    "build:lib": "vite build --config vite.config.lib.ts && tsc --project tsconfig.build.json && node scripts/assert-no-absolute-urls.js",
     "build": "npm run build:lib",
     "prepublishOnly": "npm run build",
     "prepack": "npm run build"
   }
 }
+```
+
+`assert-no-absolute-urls.js` is a regression guard from `pitfalls.md` #9 — it greps the built CSS for `url(/…)` and fails the build if any leaked. Wire it into `build:lib` so the next person who reintroduces an absolute path finds out immediately, not in a consumer's network tab.
+
+```js
+// scripts/assert-no-absolute-urls.js
+import fs from 'node:fs';
+const css = fs.readFileSync('dist/index.css', 'utf8');
+const bad = css.match(/url\(\s*['"]?\/[^)'"]+/g);
+if (bad) {
+  console.error('Absolute URL(s) leaked into dist/index.css:\n' + bad.join('\n'));
+  process.exit(1);
+}
+console.log('No absolute URLs in dist/index.css');
 ```
 
 If the project has a token build step (e.g. `build:tokens`) wire it into the top-level `build`:
@@ -142,3 +178,15 @@ Read the file list it prints. Things to spot-check:
 - No `src/`, no `*.stories.*`, no `*.test.*` files
 - Total size is reasonable (a typical DS package is 200KB–1MB)
 - No `.env`, no `node_modules`, no secrets
+
+### Install the tarball into a scratch consumer
+
+Storybook can't catch the asset-path bugs in `pitfalls.md`. The only reliable validation is to install the actual tarball into a fresh app:
+
+```bash
+pnpm pack                                                # → your-design-system-X.Y.Z.tgz
+# in a scratch Vite or Next project, separate from the DS repo:
+pnpm add /absolute/path/to/your-design-system-X.Y.Z.tgz
+```
+
+Render one component per asset surface (icon, CSS mask, image, loading state, font) and watch the browser network tab. Any 404 on `/icons/...`, `/fonts/...`, etc. means the package is not ready to publish — see `pitfalls.md` #1 and #2.

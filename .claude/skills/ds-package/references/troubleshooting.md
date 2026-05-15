@@ -91,6 +91,46 @@ The subpath isn't declared in the `exports` map, or the file it points to doesn'
 
 Consumer's React (or React Aria) version is outside the range declared in the library's `peerDependencies`. Either widen the range in the library (and republish, minor bump) or have the consumer upgrade.
 
+## Asset-distribution errors (only show up in consumers)
+
+These are the failure modes from `pitfalls.md`. They're silent in Storybook and the dev server — symptoms only appear after install in a real consumer app.
+
+### `404 Not Found` on `/icons/...`, `/images/...`, or `/fonts/...` in consumer
+
+Absolute asset path leaked from source into published code (`pitfalls.md` #1).
+
+- For JSX `<img src="/...">`: replace with inline SVG or Vite `?url` imports.
+- For CSS `url('/...')`: add `postcss-url` to the library Vite config (`shared-build-config.md`) so absolute URLs get rewritten to relative `./assets/...-[hash]` paths and the files get copied into `dist/assets/`.
+- Add `scripts/assert-no-absolute-urls.js` to `build:lib` to keep it from coming back.
+
+### Component renders fine in Storybook, breaks in consumer
+
+Storybook's `staticDirs` serves `assets/` as a static dir, masking absolute-path bugs (`pitfalls.md` #2). Storybook is not a publish-readiness check.
+
+Validate by `pnpm pack` and installing the tarball into a scratch Vite or Next project. Render any component that uses icons, masks, images, or fonts and watch the network tab.
+
+### Fonts don't load in consumer
+
+The package shipped path *strings* (SCSS variables, `~alias` paths) but no real `@font-face` rules, or the published CSS contains a bundler-specific alias the consumer doesn't share (`pitfalls.md` #5).
+
+Ship a separate `dist/fonts.css` entry with real `@font-face` rules using **relative** `url('./fonts/...')`, plus the font files copied into a sibling `dist/fonts/` folder. Document the optional `import '@scope/pkg/fonts.css'` for consumers.
+
+### Loader / animation broken only in consumer
+
+A component uses an external-asset loader (e.g. `@lottiefiles/dotlottie-react`) that fetches `/icons/animated/loader.lottie` by URL at runtime (`pitfalls.md` #4). Fixing icon paths doesn't help — the loader still requests the file from the consumer's origin.
+
+Replace with inline SVG + CSS keyframe animations themed via `currentColor`.
+
+### SCSS `Can't find stylesheet to import` in consumer
+
+The generated token barrel references a partial that doesn't exist on disk — usually because the token generator (e.g. Style Dictionary) skips empty groups but the barrel was written from a static candidate list (`pitfalls.md` #6).
+
+After generation, filter the candidate list against `fs.existsSync` before writing the barrel.
+
+### SCSS duplicate-variable error in consumer
+
+Some published partials use `@use 'foo' as *;` and others use `@import 'foo';`, and both forms touch the same variables (`pitfalls.md` #7). Pick one module system across every generated partial and the barrel that re-exports them.
+
 ## Tooling differences (npm vs pnpm vs yarn)
 
 The skill examples use `npm`. If the project uses pnpm or yarn, swap commands consistently:

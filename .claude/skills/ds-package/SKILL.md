@@ -29,6 +29,8 @@ If the project has never been published before, start with **Phase 1: First-time
 
 ## Phase 1: First-time setup
 
+**Read `references/pitfalls.md` first.** Most publish-day failures are not novel — they're the same handful of mistakes (absolute asset paths, un-externalized React, font-face issues, Storybook masking bugs). Front-loading the gotchas saves an entire release cycle, and several of them shape decisions made *during* setup, not after.
+
 Before writing any config, ask the user **one question**:
 
 > Where should this package be published?
@@ -155,5 +157,6 @@ The single thing consumers most often forget is the CSS import — components re
 | `references/shared-build-config.md` | Vite, tsconfig, package.json templates shared by both flows |
 | `references/consumer-install.md` | Consumer-side install (PAT, `.npmrc`, import patterns) |
 | `references/troubleshooting.md` | Common 401/404/E404/peer-dep errors and fixes |
+| `references/pitfalls.md` | Asset-distribution failure modes that only surface in consumer apps (read first) |
 
 Read references on demand — they're not preloaded into context. The smaller ones (consumer-install, troubleshooting) are fine to skim early; the bigger config templates are best read when you're actually about to write the file.
